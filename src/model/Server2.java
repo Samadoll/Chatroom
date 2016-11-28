@@ -68,11 +68,12 @@ public class Server2 {
                 }
 
                 if (choice.equals("2")) {
-                    usersnp.put(un, pw);
-                    this.usersList.put(this.socket, un);
-                    this.logged = true;
-                    tempOut.println("true");
-                    break;
+                    if (!usersnp.containsKey(un))
+                        usersnp.put(un, pw);
+//                    this.usersList.put(this.socket, un);
+//                    this.logged = true;
+//                    tempOut.println("false");
+//                    break;
                 }
 
                 tempOut.println("false");
