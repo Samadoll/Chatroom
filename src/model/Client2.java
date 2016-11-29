@@ -125,7 +125,7 @@ public class Client2 {
             System.out.println("Sorry, the username already exists. Please Try Again.");
         }
 
-        System.out.println("Congratulation! You Have Finished Your Registration, Now Heading To Loggin");
+        System.out.println("Congratulation! You Have Finished Your Registration, Now Heading To Login");
         login();
     }
 
@@ -134,7 +134,8 @@ public class Client2 {
         System.out.println("Function Key: ");
         System.out.println("/exit to exit");
         System.out.println("/online to check who's online");
-        System.out.println();
+        System.out.println("/privatechat to make up a private conversation to someone");
+        System.out.println("/ToXXXX: or /ToXXX/XXX: to send private message to one user or mulitple users");
         System.out.println("Welcome. Chat now.");
     }
 

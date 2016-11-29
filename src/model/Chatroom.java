@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by SamaCready on 16/10/20.
  */
-public class Chatroom implements Runnable{
+public class Chatroom implements Runnable {
     private Socket socket;
     private Map<Socket, String> userlist;
     private BufferedReader in;
@@ -41,21 +41,35 @@ public class Chatroom implements Runnable{
     }
 
     private void broadcast(String msg) {
-        for (Socket s: userlist.keySet()) {
+        for (Socket s : userlist.keySet()) {
             if (this.username.equals(userlist.get(s))) continue;
             PrintWriter wordout = this.outToSocket(s);
             wordout.println(msg);
         }
     }
 
+    private void privateBroadcast(String msg, String[] manyusernames) {
+        for (Socket s : userlist.keySet()) {
+            for (String username : manyusernames) {
+                if (username.equals(userlist.get(s))) {
+                    this.outToSocket(s).println(msg);
+                }
+            }
+        }
+    }
+
     private void whoIsOnline() {
         String word = "";
-        for (String s: userlist.values()) {
+        for (String s : userlist.values()) {
             word += s + ". ";
         }
         PrintWriter out = this.outToSocket(this.socket);
         out.println("Online: " + word + "Amount: " + userlist.values().size());
     }
+
+    private void setNotify() {
+    }
+
 
     @Override
     public void run() {
@@ -78,12 +92,26 @@ public class Chatroom implements Runnable{
                     case "/online":
                         whoIsOnline();
                         continue;
+                    case "/privatechat":
+                        privateChat();
+                        break;
 
                     default:
                         sentence = "from " + clientName + ": " + word;
                         System.out.println(sentence);
-                        onlyWord.println("You: " + word);
-                        broadcast(sentence);
+                        if (word.matches("/To(([a-z]|[A-Z])+/)*([a-z]|[A-Z])+:.+")) {
+
+                            String privateusername = word.substring(3, word.indexOf(":"));
+
+                            sentence = "from " + clientName + ": " + word.substring(word.indexOf(":") + 1);
+                            onlyWord.println("You to " + privateusername + ": " + word.substring(word.indexOf(":") + 1));
+                            privateBroadcast(sentence, privateusername.split("/"));
+
+
+                        } else {
+                            onlyWord.println("You to All: " + word);
+                            broadcast(sentence);
+                        }
                 }
 
             }
@@ -93,10 +121,20 @@ public class Chatroom implements Runnable{
             this.userlist.remove(this.socket);
             this.broadcast(clientName + " left.");
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
-        } catch (IOException e) {
+        } catch (
+                IOException e)
+
+        {
             e.printStackTrace();
         }
+
     }
+
+    private void privateChat() {
+
+
+    }
+
 
 }
 
