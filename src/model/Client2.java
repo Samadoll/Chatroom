@@ -17,10 +17,10 @@ public class Client2 {
     private boolean logged;
 
     public Client2() {
-        this.logged = true;
+        this.logged = false;
         try {
             socket = new Socket("localhost", 12345);
-            login2();
+            login();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,10 +32,11 @@ public class Client2 {
         }
     }
 
-    private void login2() throws IOException {
+    private void login() throws IOException {
         BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int remainingTimes = 2;
 
         while (true) {
             String choice = "";
@@ -53,10 +54,21 @@ public class Client2 {
             tempOut.println(pw);
             tempOut.println(choice);
             back = tempIn.readLine();
+            remainingTimes --;
+
             if (back.equals("true")) {
                 this.logged = true;
                 break;
+            } else {
+                System.out.println("User DNE, Please Try Again");
+            }
 
+            if (remainingTimes == 0) {
+                System.out.println("Too many attempts.");
+                tempIn.close();
+                tempOut.close();
+                this.socket.close();
+                break;
             }
         }
     }
@@ -66,7 +78,7 @@ public class Client2 {
         System.out.println("/exit to exit");
         System.out.println("/online to check who's online");
         System.out.println();
-        System.out.println("Chat now.");
+        System.out.println("Welcome. Chat now.");
     }
 
     private class outPut extends Thread {
@@ -115,7 +127,7 @@ public class Client2 {
         }
     }
 
-    private boolean isLogged() { return logged;}
+    private boolean isLogged() { return this.logged;}
 
     public static void main(String[] args) {
         new Client2();

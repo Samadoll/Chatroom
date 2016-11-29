@@ -28,16 +28,17 @@ public class Server2 {
             serverSocket = new ServerSocket(12345);
             while (true) {
                 socket = serverSocket.accept();
-                Login();
+                try {
+                    Login();
+                } catch (NullPointerException e) {}
                 if (isLogged()) {
                     System.out.println("Online: " + this.usersList.size());
                     new Thread(new Chatroom(socket, usersList)).start();
                 }
                 this.logged = false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
+
     }
 
     private void loadUsers() {
@@ -70,26 +71,18 @@ public class Server2 {
                 if (choice.equals("2")) {
                     if (!usersnp.containsKey(un))
                         usersnp.put(un, pw);
-//                    this.usersList.put(this.socket, un);
-//                    this.logged = true;
-//                    tempOut.println("false");
-//                    break;
                 }
 
                 tempOut.println("false");
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private boolean checkCanLog(String name, String pw) {
-        if (!this.usersList.values().contains(name)) {
-            return this.usersnp.get(name).equals(pw);
-        }
-
-        return false;
+        if (!this.usersnp.containsKey(name)) return false;
+        return !this.usersList.values().contains(name) && this.usersnp.get(name).equals(pw);
     }
 
     public static void main(String[] args) { new Server2();}
