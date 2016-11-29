@@ -68,9 +68,10 @@ public class Server2 {
                     break;
                 }
 
-                if (choice.equals("2")) {
-                    if (!usersnp.containsKey(un))
-                        usersnp.put(un, pw);
+                if (choice.equals("2") && !usersnp.containsKey(un)) {
+                    usersnp.put(un, pw);
+                    tempOut.println("true");
+                    continue;
                 }
 
                 tempOut.println("false");

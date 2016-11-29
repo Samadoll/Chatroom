@@ -20,7 +20,7 @@ public class Client2 {
         this.logged = false;
         try {
             socket = new Socket("localhost", 12345);
-            login();
+            setChoice();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,19 +32,37 @@ public class Client2 {
         }
     }
 
+    private void setChoice() throws IOException {
+        BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("1.Login     2.Register");
+        String in = userIn.readLine();
+        switch (in) {
+            case "1":
+                login();
+                break;
+            case "2":
+                register();
+                break;
+            default:
+                System.out.println("invalid.");
+                this.socket.close();
+                userIn.close();
+        }
+    }
+
     private void login() throws IOException {
         BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int remainingTimes = 2;
+        int remainingTimes = 5;
 
         while (true) {
-            String choice = "";
+//            String choice = "";
             String un = "";
             String pw = "";
             String back = "";
-            System.out.println("1.Login     2.Register");
-            choice = br.readLine();
+//            System.out.println("1.Login     2.Register");
+//            choice = br.readLine();
             System.out.println("Username: ");
             un = br.readLine();
             System.out.println("Password: ");
@@ -52,7 +70,7 @@ public class Client2 {
 
             tempOut.println(un);
             tempOut.println(pw);
-            tempOut.println(choice);
+            tempOut.println("1");
             back = tempIn.readLine();
             remainingTimes --;
 
@@ -60,7 +78,7 @@ public class Client2 {
                 this.logged = true;
                 break;
             } else {
-                System.out.println("User DNE, Please Try Again");
+                System.out.println("Login fails. Please Try Again");
             }
 
             if (remainingTimes == 0) {
@@ -72,6 +90,45 @@ public class Client2 {
             }
         }
     }
+
+    private void register() throws IOException {
+        BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        while (true) {
+            String name = "";
+            String pw = "";
+            String back = "";
+
+            System.out.println("Please Input Your New Username, It Can Only Be Alphabets.");
+            name = userIn.readLine();
+
+            while (!name.matches("([A-Z]|[a-z])+")) {
+                System.out.println("Sorry, Your New Username Is Bad, Please Make A New One.");
+                name = userIn.readLine();
+            }
+
+            System.out.println("Please Input Your New Password, It Must Be Longer Than 3");
+            pw = userIn.readLine();
+
+            while (pw.length() < 3) {
+                System.out.println("Your Password Is Too Short, Please Try Again.");
+                pw = userIn.readLine();
+            }
+
+            tempOut.println(name);
+            tempOut.println(pw);
+            tempOut.println("2");
+            back = tempIn.readLine();
+            if (back.equals("true")) break;
+            System.out.println("Sorry, the username already exists. Please Try Again.");
+        }
+
+        System.out.println("Congratulation! You Have Finished Your Registration, Now Heading To Loggin");
+        login();
+    }
+
 
     private void welcomeWords() {
         System.out.println("Function Key: ");
