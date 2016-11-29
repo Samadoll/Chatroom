@@ -26,11 +26,7 @@ public class Client2 {
         }
 
         if (isLogged()) {
-            System.out.println("Function Key: ");
-            System.out.println("/exit to exit");
-            System.out.println("/online to check who's online");
-            System.out.println();
-            System.out.println("Chat now.");
+            welcomeWords();
             new outPut().start();
             new inPut().start();
         }
@@ -63,6 +59,14 @@ public class Client2 {
 
             }
         }
+    }
+
+    private void welcomeWords() {
+        System.out.println("Function Key: ");
+        System.out.println("/exit to exit");
+        System.out.println("/online to check who's online");
+        System.out.println();
+        System.out.println("Chat now.");
     }
 
     private class outPut extends Thread {
