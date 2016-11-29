@@ -12,9 +12,10 @@ import java.util.Map;
 /**
  * Created by SamaCready on 16/10/20.
  */
+
 /**
-    Simplified??
-*/
+ * Simplified??
+ */
 public class Server {
     private ServerSocket serverSocket;
     private Socket socket;
@@ -26,9 +27,9 @@ public class Server {
 
 
     public Server() {
-        this.loggedna = false;
-        this.loggedpw = false;
-        this.logged = false;
+        loggedna = false;
+        loggedpw = false;
+        logged = false;
         loadUsers();
 
         try {
@@ -36,15 +37,16 @@ public class Server {
             while (true) {
                 socket = serverSocket.accept();
                 // need to login or register
-                LoginOrRegister();
+                newLogginOrRegister();
+                //LoginOrRegister();
                 //usersList.put(socket, "Sama");
                 if (isLogged()) {
-                    System.out.println("Online: " + this.usersList.size());
+                    System.out.println("Online: " + usersList.size());
                     new Thread(new Chatroom(socket, usersList)).start();
                 }
-                this.logged = false;
-                this.loggedpw = false;
-                this.loggedna = false;
+                logged = false;
+                loggedpw = false;
+                loggedna = false;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,7 +109,7 @@ public class Server {
                                 tempOut.println("too many times.");
                                 break;
                             }
-                            count ++;
+                            count++;
                             continue;
                         } else if (!isLoggedpw()) {
                             tempOut.println("Password: ");
@@ -117,7 +119,9 @@ public class Server {
                                 this.usersnp.put(name, pw);
                                 this.logged = true;
                             }
-                            if (!isLogged()) {tempOut.println("false");}
+                            if (!isLogged()) {
+                                tempOut.println("false");
+                            }
                             continue;
                         }
                         if (isLogged()) {
@@ -135,9 +139,111 @@ public class Server {
         }
     }
 
-    private boolean isLogged() { return this.logged;}
-    private boolean isLoggedna() { return this.loggedna;}
-    private boolean isLoggedpw() { return this.loggedpw;}
+    private void newLogginOrRegister() throws IOException {
 
-    public static void main(String[] args) { new Server();}
+        BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
+
+        if (!isLogged()) {
+
+            String received = tempIn.readLine();
+
+            if (received.equals("1")) {
+                loggin();
+            } else if (received.equals("2")) {
+                register();
+            } else {
+                tempOut.println("Invalid");
+                socket.close();
+            }
+        }
+    }
+
+    private void loggin() throws IOException {
+
+        BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
+
+        int remainingTimes = 4;
+        String name = "";
+        String pw = "";
+
+        while (remainingTimes > 0) {
+            tempOut.println("Username: ");
+            name = tempIn.readLine();
+
+            if (usersnp.containsKey(name) && !usersList.containsValue(name)) {
+                loggedna = true;
+                tempOut.println("Password: ");
+                pw = tempIn.readLine();
+
+                if (usersnp.get(name).equals(pw)) {
+                    loggedpw = true;
+
+                    if (loggedna == true && loggedpw == true) {
+                        logged = true;
+                        tempOut.println("true");
+                        this.usersList.put(socket, name);
+                        tempOut.println("Welcome " + name + ".");
+                        break;
+                    }
+                } else {
+                    remainingTimes++;
+                }
+            } else {
+                tempOut.println("User DNE, Please Try Again");
+                remainingTimes++;
+            }
+        }
+
+        if (remainingTimes == 0) {
+            tempOut.println("too many times.");
+        }
+    }
+
+    private void register() throws IOException {
+
+        BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
+
+        String name = "";
+        String pw = "";
+
+        tempOut.println("Please Input Your New Username, It Can Only Be Alphabets");
+        name = tempIn.readLine();
+
+        while (!name.matches("[A-Z]+[a-z]+") || usersnp.containsKey(name)) {
+            tempOut.println("Sorry, Your New Username Is Bad, Please Make A New One");
+            name = tempIn.readLine();
+        }
+
+        tempOut.println("Please Input Your New Password, It Must Be Longer Than 3");
+        pw = tempIn.readLine();
+
+        while (pw.length() < 3) {
+            tempOut.println("Your Password Is Too Short, Please Try Again");
+            pw = tempIn.readLine();
+        }
+
+        usersnp.put(name, pw);
+        tempOut.println("Congratulation! You Have Finished Your Registration, Now Heading To Loggin");
+        loggin();
+    }
+
+
+    private boolean isLogged() {
+        return logged;
+    }
+
+    private boolean isLoggedna() {
+        return loggedna;
+    }
+
+    private boolean isLoggedpw() {
+        return loggedpw;
+    }
+
+    public static void main(String[] args) {
+        new Server();
+    }
 }
