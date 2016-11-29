@@ -46,6 +46,7 @@ public class Client2 {
             default:
                 System.out.println("invalid.");
                 this.socket.close();
+                userIn.close();
         }
     }
 
@@ -53,7 +54,7 @@ public class Client2 {
         BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int remainingTimes = 2;
+        int remainingTimes = 5;
 
         while (true) {
 //            String choice = "";
@@ -77,7 +78,7 @@ public class Client2 {
                 this.logged = true;
                 break;
             } else {
-                System.out.println("User DNE, Please Try Again");
+                System.out.println("Login fails. Please Try Again");
             }
 
             if (remainingTimes == 0) {
