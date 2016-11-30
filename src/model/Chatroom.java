@@ -121,10 +121,7 @@ public class Chatroom implements Runnable {
             this.userlist.remove(this.socket);
             this.broadcast(clientName + " left.");
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
-        } catch (
-                IOException e)
-
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
