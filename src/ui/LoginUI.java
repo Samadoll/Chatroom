@@ -42,6 +42,7 @@ public class LoginUI {
 //        jComboBox.setBounds(10,10,165,25);
 //        panel.add(jComboBox);
         // a comment here to test if it works
+        // test again.
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(10,40,80,25);
