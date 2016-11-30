@@ -79,13 +79,6 @@ public class Chatroom implements Runnable {
         try {
             this.broadcast(clientName + " logged.");
             while ((word = this.in.readLine()) != null) {
-//                if (!word.toLowerCase().equals("/exit")) {
-//                    sentence = "from " + clientName + ": " + word;
-//                    System.out.println(sentence);
-//                    broadcast(sentence);
-//                    continue;
-//                }
-//                break;
                 switch (word.toLowerCase()) {
                     case "/exit":
                         break;
