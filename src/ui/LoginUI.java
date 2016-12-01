@@ -5,28 +5,37 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 
 /**
  * Created by Samadoll on 2016-11-28.
  */
-public class LoginUI {
-    private JComboBox<String> jComboBox;
+public class LoginUI extends JFrame implements ActionListener{
+
+    private TestUI testUI;
+
     private JTextField userText;
     private JPasswordField passwordField;
-    private Boolean isClicked;
     private String aChoice;
 
-    public LoginUI() {
+
+    public LoginUI(TestUI testUI) {
+        super("Login");
+
+        this.testUI = testUI;
         aChoice = "";
-        isClicked = false;
-        JFrame frame = new JFrame("Login");
-        frame.setSize(350,200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(350,200);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
-        frame.add(panel);
+        this.add(panel);
         paintComponents(panel);
-        frame.setVisible(true);
+        this.setVisible(true);
+        testUI.setVisible(false);
     }
 
     private void paintComponents(JPanel panel) {
@@ -35,14 +44,6 @@ public class LoginUI {
     }
 
     private void onCreate(JPanel panel) {
-
-//        jComboBox = new JComboBox<>();
-//        jComboBox.addItem("1.Login");
-//        jComboBox.addItem("2.Register");
-//        jComboBox.setBounds(10,10,165,25);
-//        panel.add(jComboBox);
-        // a comment here to test if it works
-        // test again.
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(10,40,80,25);
@@ -61,7 +62,7 @@ public class LoginUI {
 
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(50,100,80,25);
-        loginButton.addActionListener(new LoginAction());
+        loginButton.addActionListener(this);
         panel.add(loginButton);
 
         JButton registerButton = new JButton("Register");
@@ -86,23 +87,21 @@ public class LoginUI {
 
     public String getPassword() {
         System.out.println(passwordField.getPassword());
-        return passwordField.getSelectedText();
+        String pw = "";
+        for (char c: passwordField.getPassword()) {
+            pw += c;
+        }
+        return pw;
     }
 
-
-//    public Boolean getIsClicked() {
-//        return isClicked;
-//    }
-
-    private class LoginAction implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setChoice("1");
-            getChoice();
-            getUsername();
-            getPassword();
-            isClicked = true;
-        }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        setChoice("1");
+        getChoice();
+        getUsername();
+        getPassword();
+        this.setVisible(false);
+        testUI.setVisible(true);
     }
 
     private class RegisterAction implements ActionListener {
@@ -112,12 +111,39 @@ public class LoginUI {
             getChoice();
             getUsername();
             getPassword();
-            isClicked = true;
+            try {
+                fillRegisterInfo();
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(testUI, "Sorry, the username already exists. Please Try Again.");
+            }
+
         }
     }
 
-    public static void main(String[] args) {
-        new LoginUI();
+    private void fillRegisterInfo() throws IOException{
+        String name = getUsername();
+        String pw = getPassword();
+        if (!name.matches("([A-Z]|[a-z])+") || pw == null || pw.length() < 3) {
+            JOptionPane.showMessageDialog(testUI, "Sorry, Your New Username Is Bad, Please Make A New One.");
+        } else {
+            Socket socket = new Socket("192.168.0.13", 12345);
+            PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            tempOut.println(name);
+            tempOut.println(pw);
+            tempOut.println("2");
+            String back = tempIn.readLine();
+            if (back.equals("true"))
+                JOptionPane.showMessageDialog(testUI, "Congratulation! You Have Finished Your Registration, Now Heading To Login");
+            else
+                throw new IOException();
+
+            tempIn.close();
+            tempOut.close();
+            socket.close();
+        }
     }
+
 
 }
