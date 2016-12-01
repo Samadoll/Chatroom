@@ -18,7 +18,6 @@ import java.net.Socket;
 public class LoginUI2 extends JFrame implements ActionListener{
 
     private TestUI testUI;
-
     private JTextField userText;
     private JPasswordField passwordField;
     private String aChoice;
@@ -26,11 +25,13 @@ public class LoginUI2 extends JFrame implements ActionListener{
     private Client3 client3;
 
 
-    public LoginUI2(TestUI testUI) {
+    public LoginUI2() {
         super("Login");
-        client3 = new Client3(testUI);
+        client3 = new Client3();
+        testUI = new TestUI();
+        testUI.setVisible(false);
+        client3.addObserver(testUI);
         this.remainingTry = 5;
-        this.testUI = testUI;
         aChoice = "";
         this.setSize(350,200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,7 +39,6 @@ public class LoginUI2 extends JFrame implements ActionListener{
         this.add(panel);
         paintComponents(panel);
         this.setVisible(true);
-        testUI.setVisible(false);
     }
 
     private void paintComponents(JPanel panel) {
@@ -154,5 +154,9 @@ public class LoginUI2 extends JFrame implements ActionListener{
         client3.login(getUsername(), getPassword(), socket);
 
 
+    }
+
+    public static void main(String[] args) {
+        new LoginUI2();
     }
 }

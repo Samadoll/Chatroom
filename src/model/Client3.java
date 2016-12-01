@@ -15,17 +15,17 @@ import java.util.Observable;
 /**
  * Created by SamaCready on 16/10/23.
  */
-public class Client3 extends Observable{
+public class Client3 extends Observable {
     private Socket socket;
     BufferedReader in;
     PrintWriter out;
     private boolean logged;
 
-    private TestUI testUI;
+    //private TestUI testUI;
     private LoginUI2 loginUI2;
 
-    public Client3(TestUI testUI) {
-        this.testUI = testUI;
+    public Client3() {
+
     }
 
     public void setLoginUI2(LoginUI2 loginUI2) {
@@ -58,9 +58,11 @@ public class Client3 extends Observable{
 
         if (back.equals("true")) {
             loginUI2.setVisible(false);
-            testUI.setVisible(true);
+            setChanged();
+            notifyObservers("/Show");
+            //testUI.setVisible(true);
             startChat();
-            this.addObserver(testUI);
+            //this.addObserver(testUI);
 
         } else {
             socket.close();
@@ -81,10 +83,12 @@ public class Client3 extends Observable{
             tempOut.println(pw);
             tempOut.println("2");
             String back = tempIn.readLine();
-            if (back.equals("true"))
-                JOptionPane.showMessageDialog(testUI, "Congratulation! You Have Finished Your Registration, Now Heading To Login");
-            else
+            if (back.equals("true")) {
+                setChanged();
+                notifyObservers("/Registered");
+            } else {
                 throw new IOException("Sorry, the username already exists. Please Try Again.");
+            }
             tempIn.close();
             tempOut.close();
             socket.close();
@@ -102,7 +106,9 @@ public class Client3 extends Observable{
                 out = new PrintWriter(socket.getOutputStream(), true);
                 String word = null;
                 while ((word = userword.readLine()) != null) {
-                    if (word.toLowerCase().equals("/exit")) {break;}
+                    if (word.toLowerCase().equals("/exit")) {
+                        break;
+                    }
                     setChanged();
                     notifyObservers(word);
                     out.println(word);
@@ -126,7 +132,9 @@ public class Client3 extends Observable{
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String inword = null;
                 while ((inword = in.readLine()) != null) {
-                    if (inword.toLowerCase().trim().equals("/exit")) { break;}
+                    if (inword.toLowerCase().trim().equals("/exit")) {
+                        break;
+                    }
                     Date now = new Date();
                     System.out.println(now);
                     System.out.println(inword);

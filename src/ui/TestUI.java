@@ -8,7 +8,7 @@ import java.util.Observer;
 /**
  * Created by Samadoll on 2016-11-30.
  */
-public class TestUI extends JFrame implements Observer{
+public class TestUI extends JFrame implements Observer {
 
     JTextArea inText;
     private Socket socket;
@@ -17,13 +17,13 @@ public class TestUI extends JFrame implements Observer{
     public TestUI() {
         super("dsf");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500,500);
+        this.setSize(500, 500);
         this.setVisible(false);
         JPanel jPanel = new JPanel();
         this.add(jPanel);
         jPanel.setLayout(null);
         onCreate(jPanel);
-        showLoginUI();
+        //showLoginUI();
     }
 
     public void setSocket(Socket socket) {
@@ -31,11 +31,7 @@ public class TestUI extends JFrame implements Observer{
     }
 
     private void showLoginUI() {
-        new LoginUI2(this);
-    }
-
-    public static void main(String[] args) {
-        new TestUI();
+        new LoginUI2();
     }
 
     @Override
@@ -44,6 +40,13 @@ public class TestUI extends JFrame implements Observer{
             case "/exit":
                 System.exit(0);
                 break;
+            case "/Registered":
+                //inText.setText("Congratulations! You have successfully registered.Now heading to Login ");
+                JOptionPane.showMessageDialog(this, "Congratulation! You Have Finished Your Registration, Now Heading To Login");
+                break;
+            case "/Show":
+                setVisible(true);
+                break;
             default:
                 inText.setText((String) arg);
         }
@@ -51,7 +54,7 @@ public class TestUI extends JFrame implements Observer{
 
     private void onCreate(JPanel jPanel) {
         inText = new JTextArea();
-        inText.setBounds(10,10, 400, 300);
+        inText.setBounds(10, 10, 400, 300);
         inText.setEditable(false);
         inText.setVisible(true);
 
