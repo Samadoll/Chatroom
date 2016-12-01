@@ -136,7 +136,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
 
     private void fillRegisterInfo() throws IOException{
 
-        Socket socket = new Socket("192.168.0.13", 12345);
+        Socket socket = new Socket("localhost", 12345);
         client3.setLoginUI2(this);
         try {
             client3.register(getUsername(), getPassword(), socket);
@@ -149,7 +149,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
         if (getRemainingTry() < 0)
             throw new IOException("Too many attempts.");
 
-        Socket socket = new Socket("192.168.0.13", 12345);
+        Socket socket = new Socket("localhost", 12345);
         client3.setLoginUI2(this);
         client3.login(getUsername(), getPassword(), socket);
 
