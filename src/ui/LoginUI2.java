@@ -97,11 +97,11 @@ public class LoginUI2 extends JFrame implements ActionListener{
         return pw;
     }
 
-    private int getRemainingTry() {
+    public int getRemainingTry() {
         return remainingTry;
     }
 
-    private void setRemainingTry(int attempts) {
+    public void setRemainingTry(int attempts) {
         this.remainingTry = attempts;
     }
 
@@ -152,7 +152,6 @@ public class LoginUI2 extends JFrame implements ActionListener{
         Socket socket = new Socket("localhost", 12345);
         client3.setLoginUI2(this);
         client3.login(getUsername(), getPassword(), socket);
-
 
     }
 

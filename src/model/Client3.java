@@ -66,6 +66,7 @@ public class Client3 extends Observable {
             //this.addObserver(testUI);
 
         } else {
+            loginUI2.setRemainingTry(loginUI2.getRemainingTry() - 1);
             socket.close();
             tempIn.close();
             tempOut.close();

@@ -50,6 +50,7 @@ public class TestUI extends JFrame implements Observer {
                 break;
             case "/Show":
                 setVisible(true);
+                inText.setText(welcomeWords());
                 break;
             default:
                 inText.append("\n"+(String) arg);
@@ -66,4 +67,10 @@ public class TestUI extends JFrame implements Observer {
         jPanel.add(inText);
     }
 
+    private String welcomeWords() {
+        return "Function Key: \n" + "/exit to exit \n" + "/online to check who's online \n"
+                + "/ToXXXX: or /ToXXX/XXX: to send private message to one user or mulitple users \n"
+                + "Welcome. Chat now.";
+
+    }
 }
