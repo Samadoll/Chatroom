@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Date;
-import java.util.Observable;
+import java.util.*;
 
 /**
  * Created by SamaCready on 16/10/23.
@@ -23,8 +22,10 @@ public class Client3 extends Observable {
 
     //private TestUI testUI;
     private LoginUI2 loginUI2;
+    private List<String> dataBase;
 
     public Client3() {
+        dataBase = new LinkedList<String>();
 
     }
 
@@ -109,8 +110,9 @@ public class Client3 extends Observable {
                     if (word.toLowerCase().equals("/exit")) {
                         break;
                     }
-                    setChanged();
-                    notifyObservers(word);
+                    //manageDatabase(word);
+                    //setChanged();
+                    //notifyObservers(word);
                     out.println(word);
                 }
                 out.close();
@@ -133,12 +135,15 @@ public class Client3 extends Observable {
                 String inword = null;
                 while ((inword = in.readLine()) != null) {
                     if (inword.toLowerCase().trim().equals("/exit")) {
+                        setChanged();
+                        notifyObservers("/exit");
                         break;
                     }
                     Date now = new Date();
-                    System.out.println(now);
-                    System.out.println(inword);
-                    System.out.println();
+                    //System.out.println(now);
+                    //System.out.println(inword);
+                    //System.out.println();
+                    manageDatabase(inword);
                     setChanged();
                     notifyObservers(inword);
                 }
@@ -146,6 +151,14 @@ public class Client3 extends Observable {
             } catch (IOException e) {
                 ;
             }
+        }
+    }
+
+    private void manageDatabase(String line) {
+
+        dataBase.add(line);
+        if (dataBase.size() > 100) {
+            dataBase.remove(0);
         }
     }
 }

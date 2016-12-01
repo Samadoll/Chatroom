@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7436535c-0778-4afb-b5a3-6260a94fcbbc" name="Default" comment="Added Basic UI">
+    <list default="true" id="7436535c-0778-4afb-b5a3-6260a94fcbbc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/model/Client3$inPut.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/model/Client3$inPut.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/model/Client3$outPut.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/model/Client3$outPut.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/model/Client3.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/model/Client3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI2.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Client3.java" afterPath="$PROJECT_DIR$/src/model/Client3.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/LoginUI2.java" afterPath="$PROJECT_DIR$/src/ui/LoginUI2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/TestUI.java" afterPath="$PROJECT_DIR$/src/ui/TestUI.java" />
     </list>
     <ignored path="Chatroom.iws" />
@@ -55,16 +59,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TestUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
+            <state relative-caret-position="333">
+              <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
               <folding>
-                <element signature="e#635#636#0" expanded="true" />
-                <element signature="e#671#672#0" expanded="true" />
-                <element signature="e#705#706#0" expanded="true" />
-                <element signature="e#735#736#0" expanded="true" />
+                <element signature="e#715#716#0" expanded="true" />
+                <element signature="e#751#752#0" expanded="true" />
+                <element signature="e#785#786#0" expanded="true" />
+                <element signature="e#815#816#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,32 +87,21 @@
       <file leaf-file-name="Chatroom.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="-612">
+              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client3.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Client3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+            <state relative-caret-position="171">
+              <caret line="139" column="30" selection-start-line="139" selection-start-column="30" selection-end-line="139" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#inPut#0;class#Client3#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Client2.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Client2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1800">
-              <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -142,9 +135,9 @@
         <option value="$PROJECT_DIR$/src/ui/dia.java" />
         <option value="$PROJECT_DIR$/src/model/Client2.java" />
         <option value="$PROJECT_DIR$/src/ui/LoginUI.java" />
-        <option value="$PROJECT_DIR$/src/model/Client3.java" />
         <option value="$PROJECT_DIR$/src/ui/LoginUI2.java" />
         <option value="$PROJECT_DIR$/src/ui/TestUI.java" />
+        <option value="$PROJECT_DIR$/src/model/Client3.java" />
       </list>
     </option>
   </component>
@@ -632,7 +625,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480466665833</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="cancelled the relationship between Client3 and TestUI, make it real observable">
+      <created>1480631312769</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1480631312769</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -647,7 +647,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2532699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2532699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -731,7 +731,8 @@
     <MESSAGE value="Modified at Server2" />
     <MESSAGE value="Modified at Client2" />
     <MESSAGE value="Added Basic UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Basic UI" />
+    <MESSAGE value="cancelled the relationship between Client3 and TestUI, make it real observable" />
+    <option name="LAST_COMMIT_MESSAGE" value="cancelled the relationship between Client3 and TestUI, make it real observable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1003,37 +1004,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Server2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Client2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1800">
+        <state relative-caret-position="-1962">
           <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#inPut#0;class#Client3#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Server2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+        <state relative-caret-position="-612">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1051,13 +1041,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
+        <state relative-caret-position="333">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
           <folding>
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
-            <element signature="e#705#706#0" expanded="true" />
-            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#715#716#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#785#786#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="139" column="30" selection-start-line="139" selection-start-column="30" selection-end-line="139" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.*;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +25,7 @@ public class TestUI extends JFrame implements Observer {
         this.add(jPanel);
         jPanel.setLayout(null);
         onCreate(jPanel);
+        inText.setText("");
         //showLoginUI();
     }
 
@@ -36,6 +39,7 @@ public class TestUI extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+
         switch ((String) arg) {
             case "/exit":
                 System.exit(0);
@@ -48,8 +52,9 @@ public class TestUI extends JFrame implements Observer {
                 setVisible(true);
                 break;
             default:
-                inText.setText((String) arg);
+                inText.append("\n"+(String) arg);
         }
+
     }
 
     private void onCreate(JPanel jPanel) {
