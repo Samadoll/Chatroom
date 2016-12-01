@@ -15,7 +15,7 @@ import java.net.Socket;
 /**
  * Created by Samadoll on 2016-11-28.
  */
-public class LoginUI extends JFrame implements ActionListener{
+public class LoginUI2 extends JFrame implements ActionListener{
 
     private TestUI testUI;
 
@@ -23,10 +23,12 @@ public class LoginUI extends JFrame implements ActionListener{
     private JPasswordField passwordField;
     private String aChoice;
     private int remainingTry;
+    private Client3 client3;
 
 
-    public LoginUI(TestUI testUI) {
+    public LoginUI2(TestUI testUI) {
         super("Login");
+        client3 = new Client3(testUI);
         this.remainingTry = 5;
         this.testUI = testUI;
         aChoice = "";
@@ -126,34 +128,20 @@ public class LoginUI extends JFrame implements ActionListener{
             try {
                 fillRegisterInfo();
             } catch (IOException e1) {
-                JOptionPane.showMessageDialog(testUI, "Sorry, the username already exists. Please Try Again.");
+                JOptionPane.showMessageDialog(testUI, e1);
             }
 
         }
     }
 
     private void fillRegisterInfo() throws IOException{
-        String name = getUsername();
-        String pw = getPassword();
-        if (!name.matches("([A-Z]|[a-z])+") || pw == null || pw.length() < 3) {
-            JOptionPane.showMessageDialog(testUI, "Sorry, Your New Username Is Bad, Please Make A New One.");
-        } else {
-            Socket socket = new Socket("192.168.0.13", 12345);
-            PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            tempOut.println(name);
-            tempOut.println(pw);
-            tempOut.println("2");
-            String back = tempIn.readLine();
-            if (back.equals("true"))
-                JOptionPane.showMessageDialog(testUI, "Congratulation! You Have Finished Your Registration, Now Heading To Login");
-            else
-                throw new IOException();
-
-            tempIn.close();
-            tempOut.close();
-            socket.close();
+        Socket socket = new Socket("192.168.0.13", 12345);
+        client3.setLoginUI2(this);
+        try {
+            client3.register(getUsername(), getPassword(), socket);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(testUI, e);
         }
     }
 
@@ -162,25 +150,9 @@ public class LoginUI extends JFrame implements ActionListener{
             throw new IOException("Too many attempts.");
 
         Socket socket = new Socket("192.168.0.13", 12345);
-        BufferedReader tempIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter tempOut = new PrintWriter(socket.getOutputStream(), true);
+        client3.setLoginUI2(this);
+        client3.login(getUsername(), getPassword(), socket);
 
-        tempOut.println(getUsername());
-        tempOut.println(getPassword());
-        tempOut.println("1");
-        String back = tempIn.readLine();
 
-        if (back.equals("true")) {
-            this.setVisible(false);
-            testUI.setVisible(true);
-//            Client3 client3 = new Client3(socket);
-//            client3.addObserver(testUI);
-        } else {
-            setRemainingTry(getRemainingTry() - 1);
-            socket.close();
-            tempIn.close();
-            tempOut.close();
-            throw new IOException("Login fails. Please Try Again");
-        }
     }
 }

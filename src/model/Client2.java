@@ -26,10 +26,14 @@ public class Client2 {
         }
 
         if (isLogged()) {
-            welcomeWords();
-            new outPut().start();
-            new inPut().start();
+            startChat();
         }
+    }
+
+    private void startChat() {
+        welcomeWords();
+        new outPut().start();
+        new inPut().start();
     }
 
     private void setChoice() throws IOException {
