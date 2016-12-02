@@ -1,5 +1,6 @@
 package model;
 
+import sun.plugin2.message.Message;
 import ui.LoginUI2;
 import ui.TestUI;
 
@@ -30,9 +31,10 @@ public class Client3 extends Observable {
         this.loginUI2 = loginUI2;
     }
 
-    public void startChat() {
+    public void startChat() throws IOException {
         welcomeWords();
-        new outPut().start();
+//        new outPut().start();
+        this.out = new PrintWriter(socket.getOutputStream(), true);
         new inPut().start();
     }
 
@@ -95,6 +97,11 @@ public class Client3 extends Observable {
         }
     }
 
+    public void sendMsg(String msg) throws IOException {
+        out.println(msg);
+
+    }
+
     private class outPut extends Thread {
         public outPut() {
             super();
@@ -139,7 +146,7 @@ public class Client3 extends Observable {
                         notifyObservers("/exit");
                         break;
                     }
-                    Date now = new Date();
+//                    Date now = new Date();
                     //System.out.println(now);
                     //System.out.println(inword);
                     //System.out.println();

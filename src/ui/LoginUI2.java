@@ -20,7 +20,8 @@ public class LoginUI2 extends JFrame implements ActionListener{
     private String aChoice;
     private int remainingTry;
     private Client3 client3;
-
+    private String un = "Sama";
+    private String pw = "123";
 
 
     public LoginUI2() {
@@ -149,6 +150,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
 
         Socket socket = new Socket("localhost", 12345);
         client3.setLoginUI2(this);
+        testUI.setClient(client3);
         client3.login(getUsername(), getPassword(), socket);
 
     }

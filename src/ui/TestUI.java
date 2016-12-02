@@ -1,21 +1,27 @@
 package ui;
 
+import model.Client3;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.net.Socket;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 /**
  * Created by Samadoll on 2016-11-30.
  */
 public class TestUI extends JFrame implements Observer {
 
-    JTextArea inText;
-    JTextField inputArea;
-    JButton send;
+    private JTextArea inText;
+    private JTextArea inputArea;
+    private JButton send;
     private Socket socket;
+    private Client3 client3;
 
 
     public TestUI() {
@@ -39,6 +45,10 @@ public class TestUI extends JFrame implements Observer {
         new LoginUI2();
     }
 
+    public void setClient(Client3 client) {
+        this.client3 = client;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
 
@@ -55,29 +65,50 @@ public class TestUI extends JFrame implements Observer {
                 inText.setText(welcomeWords());
                 break;
             default:
-                inText.append("\n"+(String) arg);
+                Date now = new Date();
+                inText.append("\n\n"+ "<" + now +">" + "\n" + arg);
+                inText.setCaretPosition(inText.getText().length());
         }
 
     }
 
     private void onCreate(JPanel jPanel) {
         inText = new JTextArea();
-        inText.setBounds(10, 10, 400, 300);
+//        inText.setBounds(10, 10, 400, 300);
         inText.setEditable(false);
         inText.setVisible(true);
+        inText.setLineWrap(true);
+        inText.setWrapStyleWord(true);
 
-        inputArea = new JTextField();
-        inputArea.setBounds(12,315,350,100);
+        inputArea = new JTextArea();
+//        inputArea.setBounds(10,315,350,100);
         inputArea.setEditable(true);
         inputArea.setVisible(true);
+        inputArea.setLineWrap(true);
+        inputArea.setWrapStyleWord(true);
 
         send = new JButton("Send");
-        send.setBounds(362,315,50,100);
+        send.setBounds(360,315,50,100);
         send.setVisible(true);
+        send.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (!inputArea.getText().equals(""))
+                        client3.sendMsg(inputArea.getText().trim());
+                } catch (IOException e1) {}
+                inputArea.setText("");
+            }
+        });
 
+        JScrollPane j1 = new JScrollPane(inText);
+        j1.setBounds(10,10,400,300);
+        JScrollPane j2 = new JScrollPane(inputArea);
+        j2.setBounds(10,315,350,100);
+
+        jPanel.add(j1);
+        jPanel.add(j2);
         jPanel.add(send);
-        jPanel.add(inputArea);
-        jPanel.add(inText);
     }
 
     private String welcomeWords() {
