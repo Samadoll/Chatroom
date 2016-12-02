@@ -4,10 +4,7 @@ import ui.LoginUI2;
 import ui.TestUI;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.*;
 
@@ -38,6 +35,7 @@ public class Client3 extends Observable {
         new outPut().start();
         new inPut().start();
     }
+
 
     private void welcomeWords() {
         System.out.println("Function Key: ");
@@ -104,9 +102,10 @@ public class Client3 extends Observable {
 
         public void run() {
             try {
-                BufferedReader userword = new BufferedReader(new InputStreamReader(System.in));
+                BufferedReader userword = new BufferedReader( new InputStreamReader(System.in));
                 out = new PrintWriter(socket.getOutputStream(), true);
                 String word = null;
+
                 while ((word = userword.readLine()) != null) {
                     if (word.toLowerCase().equals("/exit")) {
                         break;

@@ -13,6 +13,8 @@ import java.util.Observer;
 public class TestUI extends JFrame implements Observer {
 
     JTextArea inText;
+    JTextField inputArea;
+    JButton send;
     private Socket socket;
 
 
@@ -64,6 +66,17 @@ public class TestUI extends JFrame implements Observer {
         inText.setEditable(false);
         inText.setVisible(true);
 
+        inputArea = new JTextField();
+        inputArea.setBounds(12,315,350,100);
+        inputArea.setEditable(true);
+        inputArea.setVisible(true);
+
+        send = new JButton("Send");
+        send.setBounds(362,315,50,100);
+        send.setVisible(true);
+
+        jPanel.add(send);
+        jPanel.add(inputArea);
         jPanel.add(inText);
     }
 

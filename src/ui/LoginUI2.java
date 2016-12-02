@@ -5,10 +5,7 @@ import model.Client3;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 
 
@@ -23,6 +20,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
     private String aChoice;
     private int remainingTry;
     private Client3 client3;
+
 
 
     public LoginUI2() {
