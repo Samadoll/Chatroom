@@ -21,8 +21,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
     private String aChoice;
     private int remainingTry;
     private Client3 client3;
-    private String un = "Sama";
-    private String pw = "123";
     private GridBagConstraints gbc;
 
 
@@ -45,7 +43,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
     }
 
     private void paintComponents(JPanel panel) {
-        //panel.setLayout(null);
         onCreate(panel);
     }
 

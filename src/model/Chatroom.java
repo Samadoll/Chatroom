@@ -73,9 +73,10 @@ public class Chatroom implements Runnable {
 
     @Override
     public void run() {
-        String word = "";
-        String sentence = "";
+        String word;
+        String sentence;
         String clientName = this.username;
+
         try {
             this.broadcast(clientName + " logged.");
             while ((word = this.in.readLine()) != null) {
@@ -114,7 +115,8 @@ public class Chatroom implements Runnable {
             this.userlist.remove(this.socket);
             this.broadcast(clientName + " left.");
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
-        } catch (IOException e) {
+        } catch (Exception e) {
+            userlist.remove(socket);
             e.printStackTrace();
         }
 

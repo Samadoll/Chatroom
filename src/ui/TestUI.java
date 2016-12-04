@@ -130,21 +130,24 @@ public class TestUI extends JFrame implements Observer {
 
         JScrollPane j1 = new JScrollPane(inText);
         JScrollPane j2 = new JScrollPane(inputArea);
+        JTextField j3 = new JTextField();
 
+        j3.setVisible(false);
+        j3.setEditable(false);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.ipady = 60;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.weightx = 0.5;
         gbc.weighty = 0.5;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new
-
-                Insets(3, 3, 0, 3);
+        gbc.insets = new Insets(3, 3, 0, 3);
 
         jPanel.add(j1, gbc);
 
+        gbc.gridx = 1;
+        jPanel.add(j3, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
