@@ -4,10 +4,7 @@ import model.Client3;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
@@ -22,27 +19,23 @@ public class TestUI extends JFrame implements Observer {
     private JButton send;
     private Socket socket;
     private Client3 client3;
+    private GridBagConstraints gbc;
 
 
     public TestUI() {
-        super("dsf");
+        super("ChatRoom");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 500);
         this.setVisible(false);
-        JPanel jPanel = new JPanel();
+        JPanel jPanel = new JPanel(new GridBagLayout());
+        gbc = new GridBagConstraints();
         this.add(jPanel);
-        jPanel.setLayout(null);
         onCreate(jPanel);
         inText.setText("");
-        //showLoginUI();
     }
 
     public void setSocket(Socket socket) {
         this.socket = socket;
-    }
-
-    private void showLoginUI() {
-        new LoginUI2();
     }
 
     public void setClient(Client3 client) {
@@ -57,7 +50,6 @@ public class TestUI extends JFrame implements Observer {
                 System.exit(0);
                 break;
             case "/Registered":
-                //inText.setText("Congratulations! You have successfully registered.Now heading to Login ");
                 JOptionPane.showMessageDialog(this, "Congratulation! You Have Finished Your Registration, Now Heading To Login");
                 break;
             case "/Show":
@@ -66,49 +58,111 @@ public class TestUI extends JFrame implements Observer {
                 break;
             default:
                 Date now = new Date();
-                inText.append("\n\n"+ "<" + now +">" + "\n" + arg);
+                inText.append("\n\n" + "<" + now + ">" + "\n" + arg);
                 inText.setCaretPosition(inText.getText().length());
         }
-
     }
 
     private void onCreate(JPanel jPanel) {
         inText = new JTextArea();
-//        inText.setBounds(10, 10, 400, 300);
         inText.setEditable(false);
         inText.setVisible(true);
         inText.setLineWrap(true);
         inText.setWrapStyleWord(true);
 
         inputArea = new JTextArea();
-//        inputArea.setBounds(10,315,350,100);
         inputArea.setEditable(true);
         inputArea.setVisible(true);
         inputArea.setLineWrap(true);
         inputArea.setWrapStyleWord(true);
+        inputArea.addKeyListener(new KeyAdapter() {
 
-        send = new JButton("Send");
-        send.setBounds(360,315,50,100);
+            boolean ctrlPressed;
+            boolean enterPressed;
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    enterPressed = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    ctrlPressed = true;
+                }
+                if (ctrlPressed && enterPressed) {
+                    try {
+                        if (!inputArea.getText().equals(""))
+                            client3.sendMsg(inputArea.getText().trim());
+                    } catch (IOException e1) {
+                    }
+                    inputArea.setText("");
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    enterPressed = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    ctrlPressed = false;
+                }
+            }
+        });
+
+        send = new
+
+                JButton("Send");
         send.setVisible(true);
         send.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (!inputArea.getText().equals(""))
                         client3.sendMsg(inputArea.getText().trim());
-                } catch (IOException e1) {}
+                } catch (IOException e1) {
+                }
                 inputArea.setText("");
             }
         });
 
         JScrollPane j1 = new JScrollPane(inText);
-        j1.setBounds(10,10,400,300);
         JScrollPane j2 = new JScrollPane(inputArea);
-        j2.setBounds(10,315,350,100);
 
-        jPanel.add(j1);
-        jPanel.add(j2);
-        jPanel.add(send);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipady = 60;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new
+
+                Insets(3, 3, 0, 3);
+
+        jPanel.add(j1, gbc);
+
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.ipady = 30;
+        gbc.gridwidth = 1;
+        gbc.insets = new
+
+                Insets(5, 3, 3, 2);
+
+        jPanel.add(j2, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.insets = new
+
+                Insets(5, 0, 3, 3);
+
+        jPanel.add(send, gbc);
     }
 
     private String welcomeWords() {

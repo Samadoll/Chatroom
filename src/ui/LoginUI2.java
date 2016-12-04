@@ -3,6 +3,7 @@ package ui;
 import model.Client3;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.net.Socket;
 /**
  * Created by Samadoll on 2016-11-28.
  */
-public class LoginUI2 extends JFrame implements ActionListener{
+public class LoginUI2 extends JFrame implements ActionListener {
 
     private TestUI testUI;
     private JTextField userText;
@@ -22,6 +23,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
     private Client3 client3;
     private String un = "Sama";
     private String pw = "123";
+    private GridBagConstraints gbc;
 
 
     public LoginUI2() {
@@ -32,45 +34,77 @@ public class LoginUI2 extends JFrame implements ActionListener{
         client3.addObserver(testUI);
         this.remainingTry = 5;
         aChoice = "";
-        this.setSize(350,200);
+        this.setSize(450, 230);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
         this.add(panel);
         paintComponents(panel);
         this.setVisible(true);
     }
 
     private void paintComponents(JPanel panel) {
-        panel.setLayout(null);
+        //panel.setLayout(null);
         onCreate(panel);
     }
 
     private void onCreate(JPanel panel) {
 
-        JLabel usernameLabel = new JLabel("Username:");
-        usernameLabel.setBounds(10,40,80,25);
-        panel.add(usernameLabel);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.ipadx = 3;
+        gbc.ipady = 3;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(3, 3, 0, 0);
 
-        userText = new JTextField(20);
-        userText.setBounds(100,40,165,25);
-        panel.add(userText);
+        JLabel usernameLabel = new JLabel("Username:", SwingConstants.CENTER);
+        usernameLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        panel.add(usernameLabel, gbc);
 
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(10,70,80,25);
-        panel.add(passwordLabel);
-        passwordField = new JPasswordField(20);
-        passwordField.setBounds(100,70,165,25);
-        panel.add(passwordField);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 3, 0, 0);
+
+        JLabel passwordLabel = new JLabel("Password:", SwingConstants.CENTER);
+        passwordLabel.setFont(new Font("Serif", Font.PLAIN, 25));
+        panel.add(passwordLabel, gbc);
+
+        gbc.gridwidth = 3;
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(3, 2, 0, 3);
+
+        userText = new JTextField();
+        panel.add(userText, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(3, 2, 0, 3);
+
+        passwordField = new JPasswordField();
+        panel.add(passwordField, gbc);
+
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(3, 3, 3, 3);
 
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(50,100,80,25);
         loginButton.addActionListener(this);
-        panel.add(loginButton);
+        panel.add(loginButton, gbc);
+
+        gbc.gridwidth = 1;
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(3, 0, 3, 3);
+
 
         JButton registerButton = new JButton("Register");
-        registerButton.setBounds(150,100,80,25);
         registerButton.addActionListener(new RegisterAction());
-        panel.add(registerButton);
+        panel.add(registerButton, gbc);
     }
 
     private String getChoice() {
@@ -90,7 +124,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
     private String getPassword() {
 //        System.out.println(passwordField.getPassword());
         String pw = "";
-        for (char c: passwordField.getPassword()) {
+        for (char c : passwordField.getPassword()) {
             pw += c;
         }
         return pw;
@@ -133,7 +167,7 @@ public class LoginUI2 extends JFrame implements ActionListener{
         }
     }
 
-    private void fillRegisterInfo() throws IOException{
+    private void fillRegisterInfo() throws IOException {
 
         Socket socket = new Socket("localhost", 12345);
         client3.setLoginUI2(this);

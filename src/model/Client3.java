@@ -102,34 +102,34 @@ public class Client3 extends Observable {
 
     }
 
-    private class outPut extends Thread {
-        public outPut() {
-            super();
-        }
-
-        public void run() {
-            try {
-                BufferedReader userword = new BufferedReader( new InputStreamReader(System.in));
-                out = new PrintWriter(socket.getOutputStream(), true);
-                String word = null;
-
-                while ((word = userword.readLine()) != null) {
-                    if (word.toLowerCase().equals("/exit")) {
-                        break;
-                    }
-                    //manageDatabase(word);
-                    //setChanged();
-                    //notifyObservers(word);
-                    out.println(word);
-                }
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                out.close();
-            }
-        }
-    }
+//    private class outPut extends Thread {
+//        public outPut() {
+//            super();
+//        }
+//
+//        public void run() {
+//            try {
+//                BufferedReader userword = new BufferedReader( new InputStreamReader(System.in));
+//                out = new PrintWriter(socket.getOutputStream(), true);
+//                String word = null;
+//
+//                while ((word = userword.readLine()) != null) {
+//                    if (word.toLowerCase().equals("/exit")) {
+//                        break;
+//                    }
+//                    //manageDatabase(word);
+//                    //setChanged();
+//                    //notifyObservers(word);
+//                    out.println(word);
+//                }
+//                out.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } finally {
+//                out.close();
+//            }
+//        }
+//    }
 
     private class inPut extends Thread {
         public inPut() {
