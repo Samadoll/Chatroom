@@ -1,5 +1,6 @@
 package ui;
 
+import model.Client;
 import model.Client3;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Samadoll on 2016-11-30.
@@ -18,6 +20,7 @@ public class TestUI extends JFrame implements Observer {
     private JTextArea inputArea;
     private JButton send;
     private Socket socket;
+    private JTextArea onlinenum;
     private Client3 client3;
     private GridBagConstraints gbc;
 
@@ -56,6 +59,16 @@ public class TestUI extends JFrame implements Observer {
                 setVisible(true);
                 inText.setText(welcomeWords());
                 break;
+            case "/onlineList/":
+                Client3 client3 = (Client3) o;
+                List<String> userList = client3.getUserList();
+                String finaluser = "";
+                for (String name : userList) {
+                    finaluser = finaluser + "\n" +name;
+                }
+                onlinenum.setText("Online People" + finaluser);
+                onlinenum.setCaretPosition(onlinenum.getText().length());
+                break;
             default:
                 Date now = new Date();
                 inText.append("\n\n" + "<" + now + ">" + "\n" + arg);
@@ -67,6 +80,12 @@ public class TestUI extends JFrame implements Observer {
         inText = new JTextArea();
         inText.setEditable(false);
         inText.setVisible(true);
+        inText.setLineWrap(true);
+        inText.setWrapStyleWord(true);
+
+        onlinenum = new JTextArea();
+        onlinenum.setVisible(true);
+        onlinenum.setEditable(false);
         inText.setLineWrap(true);
         inText.setWrapStyleWord(true);
 
@@ -121,7 +140,7 @@ public class TestUI extends JFrame implements Observer {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (!inputArea.getText().equals(""))
-                        client3.sendMsg(inputArea.getText().trim());
+                        client3.sendMsg(inputArea.getText());
                 } catch (IOException e1) {
                 }
                 inputArea.setText("");
@@ -130,10 +149,8 @@ public class TestUI extends JFrame implements Observer {
 
         JScrollPane j1 = new JScrollPane(inText);
         JScrollPane j2 = new JScrollPane(inputArea);
-        JTextField j3 = new JTextField();
+        JScrollPane j3 = new JScrollPane(onlinenum);
 
-        j3.setVisible(false);
-        j3.setEditable(false);
 
         gbc.gridx = 0;
         gbc.gridy = 0;

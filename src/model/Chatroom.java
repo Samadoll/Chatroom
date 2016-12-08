@@ -2,12 +2,14 @@ package model;
 
 import java.io.*;
 import java.net.*;
+import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
 /**
  * Created by SamaCready on 16/10/20.
  */
-public class Chatroom implements Runnable {
+public class Chatroom  implements Runnable {
     private Socket socket;
     private Map<Socket, String> userlist;
     private BufferedReader in;
@@ -48,6 +50,18 @@ public class Chatroom implements Runnable {
         }
     }
 
+    private void passOnlinePeople(){
+        String totalPeople = "";
+        for (String str : userlist.values()) {
+            totalPeople = totalPeople + str + ". ";
+        }
+        for (Socket s : userlist.keySet()) {
+            PrintWriter wordout = this.outToSocket(s);
+            wordout.println("/onlineList/" + totalPeople);
+        }
+
+    }
+
     private void privateBroadcast(String msg, String[] manyusernames) {
         for (Socket s : userlist.keySet()) {
             for (String username : manyusernames) {
@@ -67,8 +81,6 @@ public class Chatroom implements Runnable {
         out.println("Online: " + word + "Amount: " + userlist.values().size());
     }
 
-    private void setNotify() {
-    }
 
 
     @Override
@@ -79,6 +91,7 @@ public class Chatroom implements Runnable {
 
         try {
             this.broadcast(clientName + " logged.");
+            passOnlinePeople();
             while ((word = this.in.readLine()) != null) {
                 switch (word.toLowerCase()) {
                     case "/exit":
@@ -114,9 +127,13 @@ public class Chatroom implements Runnable {
             this.socket.close();
             this.userlist.remove(this.socket);
             this.broadcast(clientName + " left.");
+            passOnlinePeople();
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
         } catch (Exception e) {
             userlist.remove(socket);
+            this.broadcast(clientName + " left.");
+            passOnlinePeople();
+            System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
             e.printStackTrace();
         }
 

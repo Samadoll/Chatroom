@@ -1,8 +1,6 @@
 package model;
 
-import sun.plugin2.message.Message;
 import ui.LoginUI2;
-import ui.TestUI;
 
 import javax.swing.*;
 import java.io.*;
@@ -18,22 +16,25 @@ public class Client3 extends Observable {
     PrintWriter out;
     private boolean logged;
 
-    //private TestUI testUI;
     private LoginUI2 loginUI2;
     private List<String> dataBase;
+    private List<String> userList;
 
     public Client3() {
         dataBase = new LinkedList<String>();
-
+        userList = new LinkedList<String>();
     }
 
     public void setLoginUI2(LoginUI2 loginUI2) {
         this.loginUI2 = loginUI2;
     }
 
+    public List<String> getUserList() {
+        return userList;
+    }
+
     public void startChat() throws IOException {
         welcomeWords();
-//        new outPut().start();
         this.out = new PrintWriter(socket.getOutputStream(), true);
         new inPut().start();
     }
@@ -61,9 +62,7 @@ public class Client3 extends Observable {
             loginUI2.setVisible(false);
             setChanged();
             notifyObservers("/Show");
-            //testUI.setVisible(true);
             startChat();
-            //this.addObserver(testUI);
 
         } else {
             loginUI2.setRemainingTry(loginUI2.getRemainingTry() - 1);
@@ -145,6 +144,16 @@ public class Client3 extends Observable {
                         setChanged();
                         notifyObservers("/exit");
                         break;
+                    }
+                    if (inword.matches("\\/onlineList\\/(.+)")) {
+                        String [] msg = inword.split("/");
+                        String namewithdot = msg [2];
+                        String [] onlineuser = namewithdot.split(". ");
+
+                        userList = Arrays.asList(onlineuser);
+                        setChanged();
+                        notifyObservers("/onlineList/");
+                        continue;
                     }
 //                    Date now = new Date();
                     //System.out.println(now);
