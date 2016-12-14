@@ -24,7 +24,7 @@ public class Chatroom  implements Runnable {
         this.onlyWord = this.outToSocket(this.socket);
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.broadcast(this.username + " logged.");
+            this.broadcast(this.username + " logged.\n/FlagFlag");
             passOnlinePeople();
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,14 +91,17 @@ public class Chatroom  implements Runnable {
 
     @Override
     public void run() {
-        String word;
+        String word = "";
+        String flag;
         String sentence;
         String clientName = this.username;
 
         try {
-//            this.broadcast(clientName + " logged.");
-//            passOnlinePeople();
-            while ((word = this.in.readLine()) != null) {
+            passOnlinePeople();
+            while ((flag = this.in.readLine()) != null) {
+                word += flag + "\n";
+                if (!flag.equals("/FlagFlag")) continue;
+                word = word.substring(0, word.length() - 1);
                 switch (word.toLowerCase()) {
                     case "/online":
                         whoIsOnline();
@@ -108,23 +111,26 @@ public class Chatroom  implements Runnable {
                         break;
 
                     default:
-                        sentence = "from " + clientName + ": " + word;
+                        sentence = "from " + clientName + ":" + word;
                         System.out.println(sentence);
+                        /** Private Msg needs to rewrite
+                         *  Regular Expression does not work
+                         */
                         if (word.matches("/To(([a-z]|[A-Z])+/)*([a-z]|[A-Z])+:.+")) {
 
                             String privateusername = word.substring(3, word.indexOf(":"));
 
-                            sentence = "from " + clientName + ": " + word.substring(word.indexOf(":") + 1);
+                            sentence = "from " + clientName + ":" + word.substring(word.indexOf(":") + 1);
                             onlyWord.println("You to " + privateusername + ": " + word.substring(word.indexOf(":") + 1));
                             privateBroadcast(sentence, privateusername.split("/"));
 
 
                         } else {
-                            onlyWord.println("You to All: " + word);
+                            onlyWord.println("You to All:" + word);
                             broadcast(sentence);
                         }
                 }
-
+                word = "";
             }
             this.onlyWord.close();
             this.in.close();

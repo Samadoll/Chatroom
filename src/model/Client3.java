@@ -96,7 +96,9 @@ public class Client3 extends Observable {
     }
 
     public void sendMsg(String msg) throws IOException {
+        System.out.println(msg);
         out.println(msg);
+        out.println("/FlagFlag");
 
     }
 
@@ -138,6 +140,7 @@ public class Client3 extends Observable {
             try {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String inword = null;
+                String flagword = "";
                 while ((inword = in.readLine()) != null) {
                     if (inword.matches("\\/onlineList\\/(.+)")) {
                         String [] msg = inword.split("/");
@@ -149,13 +152,16 @@ public class Client3 extends Observable {
                         notifyObservers("/onlineList/");
                         continue;
                     }
-                    //Date now = new Date();
-                    //System.out.println(now);
-                    //System.out.println(inword);
-                    //System.out.println();
-                    manageDatabase(inword);
+
+                    if (!inword.equals("/FlagFlag")) {
+                        flagword += inword + "\n";
+                        continue;
+                    }
+                    flagword = flagword.substring(0, flagword.length() - 1);
+                    manageDatabase(flagword);
                     setChanged();
-                    notifyObservers(inword);
+                    notifyObservers(flagword);
+                    flagword = "";
                 }
                 in.close();
             } catch (IOException e) {

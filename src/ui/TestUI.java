@@ -68,7 +68,12 @@ public class TestUI extends JFrame implements Observer {
                 break;
             default:
                 Date now = new Date();
-                inText.append("\n\n" + "<" + now + ">" + "\n" + arg);
+                if (((String) arg).contains(":")) {
+                    String[] word = ((String) arg).split(":", 2);
+                    inText.append("\n\n" + word[0] + " <" + now + ">" + ":\n" + word[1]);
+                } else {
+                    inText.append("\n\n" + "<" + now + ">" + "\n" + arg);
+                }
                 inText.setCaretPosition(inText.getText().length());
         }
     }
