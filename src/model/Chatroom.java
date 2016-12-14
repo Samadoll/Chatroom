@@ -24,6 +24,8 @@ public class Chatroom  implements Runnable {
         this.onlyWord = this.outToSocket(this.socket);
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.broadcast(this.username + " logged.");
+            passOnlinePeople();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,11 +34,13 @@ public class Chatroom  implements Runnable {
     private PrintWriter outToSocket(Socket socket) {
         OutputStream out = null;
         try {
-            out = socket.getOutputStream();
+            if (!socket.isClosed())
+                out = socket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        if (out == null) return null;
         OutputStreamWriter outWriter = new OutputStreamWriter(out);
         BufferedWriter bufferOut = new BufferedWriter(outWriter);
         return new PrintWriter(bufferOut, true);
@@ -46,6 +50,7 @@ public class Chatroom  implements Runnable {
         for (Socket s : userlist.keySet()) {
             if (this.username.equals(userlist.get(s))) continue;
             PrintWriter wordout = this.outToSocket(s);
+            if (wordout == null) continue;
             wordout.println(msg);
         }
     }
@@ -57,6 +62,7 @@ public class Chatroom  implements Runnable {
         }
         for (Socket s : userlist.keySet()) {
             PrintWriter wordout = this.outToSocket(s);
+            if (wordout == null) continue;
             wordout.println("/onlineList/" + totalPeople);
         }
 
@@ -90,12 +96,10 @@ public class Chatroom  implements Runnable {
         String clientName = this.username;
 
         try {
-            this.broadcast(clientName + " logged.");
-            passOnlinePeople();
+//            this.broadcast(clientName + " logged.");
+//            passOnlinePeople();
             while ((word = this.in.readLine()) != null) {
                 switch (word.toLowerCase()) {
-                    case "/exit":
-                        break;
                     case "/online":
                         whoIsOnline();
                         continue;

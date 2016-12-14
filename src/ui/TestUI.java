@@ -49,9 +49,6 @@ public class TestUI extends JFrame implements Observer {
     public void update(Observable o, Object arg) {
 
         switch ((String) arg) {
-            case "/exit":
-                System.exit(0);
-                break;
             case "/Registered":
                 JOptionPane.showMessageDialog(this, "Congratulation! You Have Finished Your Registration, Now Heading To Login");
                 break;
@@ -130,9 +127,7 @@ public class TestUI extends JFrame implements Observer {
             }
         });
 
-        send = new
-
-                JButton("Send");
+        send = new JButton("Send");
         send.setVisible(true);
         send.addActionListener(new ActionListener() {
 
@@ -170,23 +165,19 @@ public class TestUI extends JFrame implements Observer {
         gbc.gridy = 1;
         gbc.ipady = 30;
         gbc.gridwidth = 1;
-        gbc.insets = new
-
-                Insets(5, 3, 3, 2);
+        gbc.insets = new Insets(5, 3, 3, 2);
 
         jPanel.add(j2, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.insets = new
-
-                Insets(5, 0, 3, 3);
+        gbc.insets = new Insets(5, 0, 3, 3);
 
         jPanel.add(send, gbc);
     }
 
     private String welcomeWords() {
-        return "Function Key: \n" + "/exit to exit \n" + "/online to check who's online \n"
+        return "Function Key: \n" +  "/online to check who's online \n"
                 + "/ToXXXX: or /ToXXX/XXX: to send private message to one user or mulitple users \n"
                 + "Welcome. Chat now.";
 

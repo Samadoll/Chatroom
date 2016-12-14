@@ -42,7 +42,6 @@ public class Client3 extends Observable {
 
     private void welcomeWords() {
         System.out.println("Function Key: ");
-        System.out.println("/exit to exit");
         System.out.println("/online to check who's online");
 //        System.out.println("/privatechat to make up a private conversation to someone");
         System.out.println("/ToXXXX: or /ToXXX/XXX: to send private message to one user or mulitple users");
@@ -140,11 +139,6 @@ public class Client3 extends Observable {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String inword = null;
                 while ((inword = in.readLine()) != null) {
-                    if (inword.toLowerCase().trim().equals("/exit")) {
-                        setChanged();
-                        notifyObservers("/exit");
-                        break;
-                    }
                     if (inword.matches("\\/onlineList\\/(.+)")) {
                         String [] msg = inword.split("/");
                         String namewithdot = msg [2];
@@ -155,7 +149,7 @@ public class Client3 extends Observable {
                         notifyObservers("/onlineList/");
                         continue;
                     }
-//                    Date now = new Date();
+                    //Date now = new Date();
                     //System.out.println(now);
                     //System.out.println(inword);
                     //System.out.println();

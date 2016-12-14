@@ -18,7 +18,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
     private TestUI testUI;
     private JTextField userText;
     private JPasswordField passwordField;
-    private String aChoice;
     private int remainingTry;
     private Client3 client3;
     private GridBagConstraints gbc;
@@ -31,7 +30,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
         testUI.setVisible(false);
         client3.addObserver(testUI);
         this.remainingTry = 5;
-        aChoice = "";
         this.setSize(450, 230);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
@@ -104,15 +102,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
         panel.add(registerButton, gbc);
     }
 
-    private String getChoice() {
-//        System.out.println(aChoice);
-        return aChoice;
-    }
-
-    private void setChoice(String choice) {
-        this.aChoice = choice;
-    }
-
     private String getUsername() {
 //        System.out.println(userText.getText());
         return userText.getText();
@@ -137,10 +126,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setChoice("1");
-        getChoice();
-        getUsername();
-        getPassword();
         try {
             tryLogin();
         } catch (IOException e1) {
@@ -151,10 +136,6 @@ public class LoginUI2 extends JFrame implements ActionListener {
     private class RegisterAction implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            setChoice("2");
-            getChoice();
-            getUsername();
-            getPassword();
             try {
                 fillRegisterInfo();
             } catch (IOException e1) {
