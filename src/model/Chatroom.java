@@ -24,7 +24,6 @@ public class Chatroom  implements Runnable {
         this.onlyWord = this.outToSocket(this.socket);
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.broadcast(this.username + " logged.\n/FlagFlag");
             passOnlinePeople();
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,6 +96,7 @@ public class Chatroom  implements Runnable {
         String clientName = this.username;
 
         try {
+            this.broadcast(this.username + " logged.\n/FlagFlag");
             passOnlinePeople();
             while ((flag = this.in.readLine()) != null) {
                 word += flag + "\n";

@@ -19,8 +19,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Chatroom.java" afterPath="$PROJECT_DIR$/src/model/Chatroom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Client3.java" afterPath="$PROJECT_DIR$/src/model/Client3.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/TestUI.java" afterPath="$PROJECT_DIR$/src/ui/TestUI.java" />
     </list>
     <ignored path="Chatroom.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,8 +63,8 @@
       <file leaf-file-name="Chatroom.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1635">
-              <caret line="116" column="60" lean-forward="false" selection-start-line="116" selection-start-column="60" selection-end-line="116" selection-end-column="60" />
+            <state relative-caret-position="315">
+              <caret line="98" column="66" lean-forward="false" selection-start-line="98" selection-start-column="66" selection-end-line="98" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#whoIsOnline#0;class#Chatroom#0" expanded="false" />
@@ -806,7 +804,7 @@
       <workItem from="1481317061538" duration="404000" />
       <workItem from="1481358580260" duration="146000" />
       <workItem from="1481669321545" duration="8164000" />
-      <workItem from="1481677785496" duration="15764000" />
+      <workItem from="1481677785496" duration="16393000" />
     </task>
     <task id="LOCAL-00001" summary="Modified at Server2">
       <created>1480376881279</created>
@@ -878,11 +876,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481679740047</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fix the bug that cannot send more than one line.&#10;Private message (Regular Expression) needs to be rewritten.">
+      <created>1481698779207</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1481698779207</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96526000" />
+    <option name="totallyTimeSpent" value="97155000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1680" height="1050" extended-state="0" />
@@ -992,7 +997,8 @@
     <MESSAGE value="Fix the UI interfaces so that they can change size.&#10;Now we can send messages using CTRL + ENTER" />
     <MESSAGE value="Improve the Chatroom UI&#10;Fix a severe BUG in Windows environment&#10;a socket cannot re login" />
     <MESSAGE value="Fix bugs on Chatroom (outToSocket/ broadcast)&#10;Fix bug Online Users displaying problem&#10;cancel out exit function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs on Chatroom (outToSocket/ broadcast)&#10;Fix bug Online Users displaying problem&#10;cancel out exit function." />
+    <MESSAGE value="Fix the bug that cannot send more than one line.&#10;Private message (Regular Expression) needs to be rewritten." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the bug that cannot send more than one line.&#10;Private message (Regular Expression) needs to be rewritten." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1766,8 +1772,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="116" column="60" lean-forward="false" selection-start-line="116" selection-start-column="60" selection-end-line="116" selection-end-column="60" />
+        <state relative-caret-position="315">
+          <caret line="98" column="66" lean-forward="false" selection-start-line="98" selection-start-column="66" selection-end-line="98" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#whoIsOnline#0;class#Chatroom#0" expanded="false" />
