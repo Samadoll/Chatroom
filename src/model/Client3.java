@@ -96,7 +96,6 @@ public class Client3 extends Observable {
     }
 
     public void sendMsg(String msg) throws IOException {
-        System.out.println(msg);
         out.println(msg);
         out.println("/FlagFlag");
 

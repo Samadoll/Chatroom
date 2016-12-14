@@ -116,12 +116,12 @@ public class Chatroom  implements Runnable {
                         /** Private Msg needs to rewrite
                          *  Regular Expression does not work
                          */
-                        if (word.matches("/To(([a-z]|[A-Z])+/)*([a-z]|[A-Z])+:.+")) {
+                        if (word.matches("/To(([a-z]|[A-Z])+/)*([a-z]|[A-Z])+:(.+(\n)*)+")) {
 
                             String privateusername = word.substring(3, word.indexOf(":"));
 
-                            sentence = "from " + clientName + ":" + word.substring(word.indexOf(":") + 1);
-                            onlyWord.println("You to " + privateusername + ": " + word.substring(word.indexOf(":") + 1));
+                            sentence = "from " + clientName + ":" + word.substring(word.indexOf(":") + 1).trim();
+                            onlyWord.println("You to " + privateusername + ":" + word.substring(word.indexOf(":") + 1).trim());
                             privateBroadcast(sentence, privateusername.split("/"));
 
 

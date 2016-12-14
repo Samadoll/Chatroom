@@ -19,6 +19,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Chatroom.java" afterPath="$PROJECT_DIR$/src/model/Chatroom.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Client3.java" afterPath="$PROJECT_DIR$/src/model/Client3.java" />
     </list>
     <ignored path="Chatroom.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chatroom.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chatroom.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="98" column="66" lean-forward="false" selection-start-line="98" selection-start-column="66" selection-end-line="98" selection-end-column="66" />
+            <state relative-caret-position="375">
+              <caret line="122" column="112" lean-forward="false" selection-start-line="122" selection-start-column="112" selection-end-line="122" selection-end-column="112" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#whoIsOnline#0;class#Chatroom#0" expanded="false" />
@@ -76,8 +77,8 @@
       <file leaf-file-name="LoginUI2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/LoginUI2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="149" column="45" lean-forward="false" selection-start-line="149" selection-start-column="45" selection-end-line="149" selection-end-column="45" />
+            <state relative-caret-position="396">
+              <caret line="149" column="39" lean-forward="false" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#onCreate#0;class#LoginUI2#0" expanded="false" />
@@ -92,7 +93,7 @@
       <file leaf-file-name="TestUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
+            <state relative-caret-position="480">
               <caret line="72" column="68" lean-forward="false" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,15 +106,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client3.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Client3.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="97" column="56" lean-forward="false" selection-start-line="97" selection-start-column="56" selection-end-line="97" selection-end-column="56" />
               <folding>
                 <element signature="method#login#0;class#Client3#0" expanded="false" />
                 <element signature="method#register#0;class#Client3#0" expanded="false" />
-                <element signature="e#3234#3277#0" expanded="false" />
+                <element signature="e#3201#3244#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -152,10 +153,10 @@
         <option value="$PROJECT_DIR$/src/ui/LoginUI.java" />
         <option value="$PROJECT_DIR$/src/gui.form" />
         <option value="$PROJECT_DIR$/src/test.form" />
-        <option value="$PROJECT_DIR$/src/model/Client3.java" />
         <option value="$PROJECT_DIR$/src/ui/TestUI.java" />
-        <option value="$PROJECT_DIR$/src/ui/LoginUI2.java" />
         <option value="$PROJECT_DIR$/src/model/Chatroom.java" />
+        <option value="$PROJECT_DIR$/src/ui/LoginUI2.java" />
+        <option value="$PROJECT_DIR$/src/model/Client3.java" />
       </list>
     </option>
   </component>
@@ -804,7 +805,7 @@
       <workItem from="1481317061538" duration="404000" />
       <workItem from="1481358580260" duration="146000" />
       <workItem from="1481669321545" duration="8164000" />
-      <workItem from="1481677785496" duration="16393000" />
+      <workItem from="1481677785496" duration="17815000" />
     </task>
     <task id="LOCAL-00001" summary="Modified at Server2">
       <created>1480376881279</created>
@@ -883,11 +884,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481698779207</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fix bugs on Chatroom (outToSocket/ broadcast)&#10;Fix bug Online Users displaying problem&#10;cancel out exit function.">
+      <created>1481699279564</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1481699279564</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97155000" />
+    <option name="totallyTimeSpent" value="98577000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1680" height="1050" extended-state="0" />
@@ -996,9 +1004,9 @@
     <MESSAGE value="cancelled the relationship between Client3 and TestUI, make it real observable" />
     <MESSAGE value="Fix the UI interfaces so that they can change size.&#10;Now we can send messages using CTRL + ENTER" />
     <MESSAGE value="Improve the Chatroom UI&#10;Fix a severe BUG in Windows environment&#10;a socket cannot re login" />
-    <MESSAGE value="Fix bugs on Chatroom (outToSocket/ broadcast)&#10;Fix bug Online Users displaying problem&#10;cancel out exit function." />
     <MESSAGE value="Fix the bug that cannot send more than one line.&#10;Private message (Regular Expression) needs to be rewritten." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix the bug that cannot send more than one line.&#10;Private message (Regular Expression) needs to be rewritten." />
+    <MESSAGE value="Fix bugs on Chatroom (outToSocket/ broadcast)&#10;Fix bug Online Users displaying problem&#10;cancel out exit function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs on Chatroom (outToSocket/ broadcast)&#10;Fix bug Online Users displaying problem&#10;cancel out exit function." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1011,7 +1019,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/model/Client3.java</url>
-          <line>144</line>
+          <line>143</line>
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
@@ -1720,46 +1728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/LoginUI2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="149" column="45" lean-forward="false" selection-start-line="149" selection-start-column="45" selection-end-line="149" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onCreate#0;class#LoginUI2#0" expanded="false" />
-            <element signature="method#getPassword#0;class#LoginUI2#0" expanded="false" />
-            <element signature="method#actionPerformed#0;class#LoginUI2#0" expanded="false" />
-            <element signature="class#RegisterAction#0;class#LoginUI2#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-          <folding>
-            <element signature="method#login#0;class#Client3#0" expanded="false" />
-            <element signature="method#register#0;class#Client3#0" expanded="false" />
-            <element signature="e#3234#3277#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="72" column="68" lean-forward="false" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1056#1057#0" expanded="true" />
-            <element signature="method#onCreate#0;class#TestUI#0" expanded="false" />
-            <element signature="class#3037:4194" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Server2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-129">
@@ -1772,11 +1740,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="98" column="66" lean-forward="false" selection-start-line="98" selection-start-column="66" selection-end-line="98" selection-end-column="66" />
+        <state relative-caret-position="375">
+          <caret line="122" column="112" lean-forward="false" selection-start-line="122" selection-start-column="112" selection-end-line="122" selection-end-column="112" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#whoIsOnline#0;class#Chatroom#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/LoginUI2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="149" column="39" lean-forward="false" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onCreate#0;class#LoginUI2#0" expanded="false" />
+            <element signature="method#getPassword#0;class#LoginUI2#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#LoginUI2#0" expanded="false" />
+            <element signature="class#RegisterAction#0;class#LoginUI2#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="72" column="68" lean-forward="false" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1019#1020#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
+            <element signature="method#onCreate#0;class#TestUI#0" expanded="false" />
+            <element signature="class#3037:4194" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="97" column="56" lean-forward="false" selection-start-line="97" selection-start-column="56" selection-end-line="97" selection-end-column="56" />
+          <folding>
+            <element signature="method#login#0;class#Client3#0" expanded="false" />
+            <element signature="method#register#0;class#Client3#0" expanded="false" />
+            <element signature="e#3201#3244#0" expanded="false" />
           </folding>
         </state>
       </provider>
