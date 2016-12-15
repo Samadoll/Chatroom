@@ -113,9 +113,6 @@ public class Chatroom  implements Runnable {
                     default:
                         sentence = "from " + clientName + ":" + word;
                         System.out.println(sentence);
-                        /** Private Msg needs to rewrite
-                         *  Regular Expression does not work
-                         */
                         if (word.matches("/To(([a-z]|[A-Z])+/)*([a-z]|[A-Z])+:(.+(\n)*)+")) {
 
                             String privateusername = word.substring(3, word.indexOf(":"));
@@ -136,12 +133,12 @@ public class Chatroom  implements Runnable {
             this.in.close();
             this.socket.close();
             this.userlist.remove(this.socket);
-            this.broadcast(clientName + " left.");
+            this.broadcast(clientName + " left.\n/FlagFlag");
             passOnlinePeople();
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
         } catch (Exception e) {
             userlist.remove(socket);
-            this.broadcast(clientName + " left.");
+            this.broadcast(clientName + " left.\n/FlagFlag");
             passOnlinePeople();
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
             e.printStackTrace();

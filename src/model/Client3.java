@@ -87,6 +87,9 @@ public class Client3 extends Observable {
                 setChanged();
                 notifyObservers("/Registered");
             } else {
+                tempIn.close();
+                tempOut.close();
+                socket.close();
                 throw new IOException("Sorry, the username already exists. Please Try Again.");
             }
             tempIn.close();

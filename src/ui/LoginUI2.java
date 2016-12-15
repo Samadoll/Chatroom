@@ -15,7 +15,7 @@ import java.net.Socket;
  */
 public class LoginUI2 extends JFrame implements ActionListener {
 
-    private TestUI testUI;
+    private TestUI2 testUI; // change Here for TestUI and TestUI2
     private JTextField userText;
     private JPasswordField passwordField;
     private int remainingTry;
@@ -26,7 +26,7 @@ public class LoginUI2 extends JFrame implements ActionListener {
     public LoginUI2() {
         super("Login");
         client3 = new Client3();
-        testUI = new TestUI();
+        testUI = new TestUI2(); // Change Here for TestUI and TestUI2
         testUI.setVisible(false);
         client3.addObserver(testUI);
         this.remainingTry = 5;
