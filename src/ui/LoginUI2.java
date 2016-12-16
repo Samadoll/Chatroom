@@ -164,6 +164,7 @@ public class LoginUI2 extends JFrame implements ActionListener {
         client3.setLoginUI2(this);
         testUI.setClient(client3);
         client3.login(getUsername(), getPassword(), socket);
+        testUI.setTitle("ChatRoom<" + getUsername() + ">");
 
     }
 

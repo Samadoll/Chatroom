@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7436535c-0778-4afb-b5a3-6260a94fcbbc" name="Default" comment="Fix Bug on Chatroom (Broadcast if User leave).&#10;FIx bug on Client3 that Stuck at Login after Registering w/ existed Username.&#10;New TestUI Version (TestUI2) is available.&#10;Comments on LoginUI2 to switch between TestUI and TestUI2">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/TestUI2.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ui/TestUI2.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI$1.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI$RegisterAction.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI.class" afterPath="" />
@@ -19,11 +17,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI2.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/LoginUI2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI$1.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" afterPath="$PROJECT_DIR$/out/production/Chatroom/ui/TestUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Chatroom.java" afterPath="$PROJECT_DIR$/src/model/Chatroom.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Client3.java" afterPath="$PROJECT_DIR$/src/model/Client3.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Server2.java" afterPath="$PROJECT_DIR$/src/model/Server2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/LoginUI2.java" afterPath="$PROJECT_DIR$/src/ui/LoginUI2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/TestUI2.java" afterPath="$PROJECT_DIR$/src/ui/TestUI2.java" />
     </list>
     <ignored path="Chatroom.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,11 +54,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Server2.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Server2.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/model/Server2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+                <state relative-caret-position="234">
+                  <caret line="58" column="45" lean-forward="false" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -67,7 +66,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TestUI2.form" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TestUI2.form" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/ui/TestUI2.form">
               <provider selected="true" editor-type-id="ui-designer">
                 <state />
@@ -77,19 +76,18 @@
           <file leaf-file-name="TestUI2.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/ui/TestUI2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+                <state relative-caret-position="-60">
+                  <caret line="148" column="7" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="148" selection-end-column="7" />
                   <folding>
-                    <element signature="method#keyPressed#0;class#1444:2832" expanded="false" />
-                    <element signature="method#keyReleased#0;class#1444:2832" expanded="false" />
-                    <element signature="e#3607#3955#0" expanded="true" />
-                    <element signature="e#3954#3955#0" expanded="true" />
-                    <element signature="e#3999#4899#0" expanded="true" />
-                    <element signature="e#4898#4899#0" expanded="true" />
-                    <element signature="e#5186#5187#0" expanded="true" />
-                    <element signature="e#5222#5223#0" expanded="true" />
-                    <element signature="e#5277#5278#0" expanded="true" />
-                    <element signature="e#5320#5321#0" expanded="true" />
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#keyReleased#0;class#1444:2864" expanded="false" />
+                    <element signature="e#2943#3550#0" expanded="true" />
+                    <element signature="e#3549#3550#0" expanded="true" />
+                    <element signature="e#3671#4019#0" expanded="true" />
+                    <element signature="e#4018#4019#0" expanded="true" />
+                    <element signature="e#4063#4687#0" expanded="true" />
+                    <element signature="e#4686#4687#0" expanded="true" />
+                    <element signature="e#4780#4826#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -98,18 +96,16 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="LoginUI2.java" pinned="false" current-in-tab="false">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="LoginUI2.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/ui/LoginUI2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-195">
-                  <caret line="28" column="69" lean-forward="false" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
+                <state relative-caret-position="-276">
+                  <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#onCreate#0;class#LoginUI2#0" expanded="false" />
                     <element signature="method#getPassword#0;class#LoginUI2#0" expanded="false" />
-                    <element signature="e#4617#4618#0" expanded="true" />
-                    <element signature="e#4647#4648#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -118,11 +114,11 @@
           <file leaf-file-name="Chatroom.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="114" column="53" lean-forward="false" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
+                <state relative-caret-position="795">
+                  <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#whoIsOnline#0;class#Chatroom#0" expanded="false" />
+                    <element signature="e#1583#1621#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -131,25 +127,26 @@
           <file leaf-file-name="TestUI.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-638">
-                  <caret line="98" column="50" lean-forward="true" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
+                <state relative-caret-position="1140">
+                  <caret line="80" column="41" lean-forward="false" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#4296#4663#0" expanded="true" />
-                    <element signature="e#4662#4663#0" expanded="true" />
+                    <element signature="method#onCreate#0;class#TestUI#0" expanded="false" />
+                    <element signature="class#3037:4194" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Client3.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Client3.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
-                  <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+                <state relative-caret-position="105">
+                  <caret line="63" column="59" lean-forward="false" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
                   <folding>
-                    <element signature="method#login#0;class#Client3#0" expanded="false" />
-                    <element signature="e#3298#3341#0" expanded="false" />
+                    <element signature="e#660#661#0" expanded="true" />
+                    <element signature="e#691#692#0" expanded="true" />
+                    <element signature="e#3517#3560#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -175,6 +172,9 @@
       <find>privateLis</find>
       <find>onlineList</find>
       <find>client3</find>
+      <find>show</find>
+      <find>passonlinepeople</find>
+      <find>privatechatusers</find>
     </findStrings>
     <replaceStrings>
       <replace>sendButton</replace>
@@ -199,16 +199,16 @@
         <option value="$PROJECT_DIR$/src/model/Client2.java" />
         <option value="$PROJECT_DIR$/src/ui/test.form" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/model/Server2.java" />
         <option value="$PROJECT_DIR$/src/ui/LoginUI.java" />
         <option value="$PROJECT_DIR$/src/gui.form" />
         <option value="$PROJECT_DIR$/src/test.form" />
         <option value="$PROJECT_DIR$/src/ui/TestUI.java" />
         <option value="$PROJECT_DIR$/src/ui/TestUI2.form" />
-        <option value="$PROJECT_DIR$/src/model/Client3.java" />
-        <option value="$PROJECT_DIR$/src/ui/TestUI2.java" />
+        <option value="$PROJECT_DIR$/src/model/Server2.java" />
         <option value="$PROJECT_DIR$/src/model/Chatroom.java" />
+        <option value="$PROJECT_DIR$/src/ui/TestUI2.java" />
         <option value="$PROJECT_DIR$/src/ui/LoginUI2.java" />
+        <option value="$PROJECT_DIR$/src/model/Client3.java" />
       </list>
     </option>
   </component>
@@ -238,8 +238,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -326,7 +326,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -335,9 +335,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="391" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="false" />
@@ -903,7 +903,8 @@
       <workItem from="1481358580260" duration="146000" />
       <workItem from="1481669321545" duration="8164000" />
       <workItem from="1481677785496" duration="18304000" />
-      <workItem from="1481772067432" duration="16826000" />
+      <workItem from="1481772067432" duration="18103000" />
+      <workItem from="1481853803280" duration="6722000" />
     </task>
     <task id="LOCAL-00001" summary="Modified at Server2">
       <created>1480376881279</created>
@@ -996,11 +997,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481701033672</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fix Bug on Chatroom (Broadcast if User leave).&#10;FIx bug on Client3 that Stuck at Login after Registering w/ existed Username.&#10;New TestUI Version (TestUI2) is available.&#10;Comments on LoginUI2 to switch between TestUI and TestUI2">
+      <created>1481793932178</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1481793932178</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115892000" />
+    <option name="totallyTimeSpent" value="123891000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1680" height="1050" extended-state="0" />
@@ -1009,21 +1017,20 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32801595" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32801595" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2520516" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26321036" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20837487" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1764706" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15476191" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1036,6 +1043,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297619" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1124,17 +1132,11 @@
           <properties />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/Client3.java</url>
-          <line>146</line>
-          <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="47" />
+      <option name="time" value="50" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1143,7 +1145,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/javax/swing/JComponent.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/io/InputStreamReader.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/javax/swing/JFrame.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/lang/SecurityManager.java" />
@@ -1343,24 +1344,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/test.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/test.form" />
+    <entry file="file://$PROJECT_DIR$/src/ui/test.java" />
     <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1376,88 +1365,99 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/TestUI2.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/TestUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-638">
-          <caret line="98" column="50" lean-forward="true" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
+        <state relative-caret-position="1140">
+          <caret line="80" column="41" lean-forward="false" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4296#4663#0" expanded="true" />
-            <element signature="e#4662#4663#0" expanded="true" />
+            <element signature="method#onCreate#0;class#TestUI#0" expanded="false" />
+            <element signature="class#3037:4194" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="1966" column="0" lean-forward="false" selection-start-line="1966" selection-start-column="0" selection-end-line="1966" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/TestUI2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="148" column="7" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="148" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#keyReleased#0;class#1444:2864" expanded="false" />
+            <element signature="e#2943#3550#0" expanded="true" />
+            <element signature="e#3549#3550#0" expanded="true" />
+            <element signature="e#3671#4019#0" expanded="true" />
+            <element signature="e#4018#4019#0" expanded="true" />
+            <element signature="e#4063#4687#0" expanded="true" />
+            <element signature="e#4686#4687#0" expanded="true" />
+            <element signature="e#4780#4826#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Server2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+        <state relative-caret-position="234">
+          <caret line="58" column="45" lean-forward="false" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="114" column="53" lean-forward="false" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#whoIsOnline#0;class#Chatroom#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/TestUI2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding>
-            <element signature="method#keyPressed#0;class#1444:2832" expanded="false" />
-            <element signature="method#keyReleased#0;class#1444:2832" expanded="false" />
-            <element signature="e#3607#3955#0" expanded="true" />
-            <element signature="e#3954#3955#0" expanded="true" />
-            <element signature="e#3999#4899#0" expanded="true" />
-            <element signature="e#4898#4899#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5222#5223#0" expanded="true" />
-            <element signature="e#5277#5278#0" expanded="true" />
-            <element signature="e#5320#5321#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/TestUI2.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/LoginUI2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="28" column="69" lean-forward="false" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onCreate#0;class#LoginUI2#0" expanded="false" />
-            <element signature="method#getPassword#0;class#LoginUI2#0" expanded="false" />
-            <element signature="e#4617#4618#0" expanded="true" />
-            <element signature="e#4647#4648#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Client3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        <state relative-caret-position="105">
+          <caret line="63" column="59" lean-forward="false" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
           <folding>
-            <element signature="method#login#0;class#Client3#0" expanded="false" />
-            <element signature="e#3298#3341#0" expanded="false" />
+            <element signature="e#660#661#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+            <element signature="e#3517#3560#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Chatroom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1583#1621#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/LoginUI2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-276">
+          <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onCreate#0;class#LoginUI2#0" expanded="false" />
+            <element signature="method#getPassword#0;class#LoginUI2#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1468,10 +1468,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>chatroomClient</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

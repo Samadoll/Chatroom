@@ -62,7 +62,7 @@ public class TestUI2 extends JFrame implements Observer{
                 if (ctrlPressed && enterPressed) {
                     try {
                         if (!enterArea.getText().equals(""))
-                            if (isPrivateChat()) {
+                            if (isPrivateChat() && !privateChatUsers.equals("")) {
                                 client3.sendMsg("/To" + privateChatUsers + ":"+ enterArea.getText().trim());
                             } else {
                                 client3.sendMsg(enterArea.getText().trim());
@@ -93,7 +93,7 @@ public class TestUI2 extends JFrame implements Observer{
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (!enterArea.getText().equals(""))
-                        if (isPrivateChat()) {
+                        if (isPrivateChat() && !privateChatUsers.equals("")) {
                             client3.sendMsg("/To" + privateChatUsers + ":"+ enterArea.getText());
                         } else {
                             client3.sendMsg(enterArea.getText());
@@ -132,11 +132,7 @@ public class TestUI2 extends JFrame implements Observer{
                 /**
                  * update Private chat list
                  */
-                privateChatUsers = "";
-                for(int i = 0; i < privateModel.size(); i++)
-                    privateChatUsers += privateModel.get(i) + "/";
-                privateChatUsers = privateChatUsers.substring(0, privateChatUsers.length() - 1);
-                System.out.println(privateChatUsers);
+                updatePrivateChatUsers();
             }
         });
 
@@ -161,6 +157,14 @@ public class TestUI2 extends JFrame implements Observer{
         isPrivateChat = privateChat;
     }
 
+    private void updatePrivateChatUsers() {
+        privateChatUsers = "";
+        for(int i = 0; i < privateModel.size(); i++)
+            privateChatUsers += privateModel.get(i) + "/";
+        privateChatUsers = privateChatUsers.substring(0, privateChatUsers.length() - 1);
+        System.out.println(privateChatUsers);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
 
@@ -171,14 +175,11 @@ public class TestUI2 extends JFrame implements Observer{
             case "/Show":
                 setVisible(true);
                 chatArea.setText(welcomeWords());
-                break;
-            case "/onlineList/":
-                Client3 client3 = (Client3) o;
+                // new way to passOnlineUsers
                 List<String> userList = client3.getUserList();
                 onlineModel.clear();
                 for (String name : userList) {
-                    if (!onlineModel.contains(name))
-                        onlineModel.addElement(name);
+                    onlineModel.addElement(name);
                 }
                 break;
             default:
@@ -188,6 +189,18 @@ public class TestUI2 extends JFrame implements Observer{
                     chatArea.append("\n\n" + word[0] + " <" + now + ">" + ":\n" + word[1]);
                 } else {
                     chatArea.append("\n\n" + "<" + now + ">" + "\n" + arg);
+                    String tempUser = ((String) arg).substring(0, ((String) arg).indexOf(" ")).trim();
+                    if (((String) arg).contains("logged"))
+                        onlineModel.addElement(tempUser);
+                    else {
+                        if (privateModel.contains(tempUser))
+                            privateModel.removeElement(tempUser);
+                        onlineModel.removeElement(tempUser);
+                        if (!privateModel.isEmpty())
+                            updatePrivateChatUsers();
+                        else
+                            privateChatUsers = "";
+                    }
                 }
                 chatArea.setCaretPosition(chatArea.getText().length());
         }
@@ -195,8 +208,9 @@ public class TestUI2 extends JFrame implements Observer{
 
 
     private String welcomeWords() {
-        return "Function Key: \n" +  "/online to check who's online \n"
-                + "/ToXXXX: or /ToXXX/XXX: to sendButton private message to one user or mulitple users \n"
+        return "Function Key: \n"
+                + "Press Select to add/remove to the private chat list \n"
+                + "Press Private to activate or disable private chat \n"
                 + "Welcome. Chat now.";
 
     }

@@ -56,6 +56,13 @@ public class Server2 {
                 String pw = "";
                 String choice = "";
 
+                // new way to passOnlineUsers
+                String initialUsersList = "";
+                for (String item: this.usersList.values()) {
+                    initialUsersList += item + ". ";
+                }
+                //
+
                 un = tempIn.readLine();
                 pw = tempIn.readLine();
                 choice = tempIn.readLine();
@@ -65,6 +72,8 @@ public class Server2 {
                     this.usersList.put(this.socket, un);
                     this.logged = true;
                     tempOut.println("true");
+                    // new way to passOnlineUsers
+                    tempOut.println(initialUsersList);
                     break;
                 }
 

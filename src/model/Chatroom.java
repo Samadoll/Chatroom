@@ -2,9 +2,7 @@ package model;
 
 import java.io.*;
 import java.net.*;
-import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 
 /**
  * Created by SamaCready on 16/10/20.
@@ -24,7 +22,7 @@ public class Chatroom  implements Runnable {
         this.onlyWord = this.outToSocket(this.socket);
         try {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            passOnlinePeople();
+//            passOnlinePeople();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,18 +52,18 @@ public class Chatroom  implements Runnable {
         }
     }
 
-    private void passOnlinePeople(){
-        String totalPeople = "";
-        for (String str : userlist.values()) {
-            totalPeople = totalPeople + str + ". ";
-        }
-        for (Socket s : userlist.keySet()) {
-            PrintWriter wordout = this.outToSocket(s);
-            if (wordout == null) continue;
-            wordout.println("/onlineList/" + totalPeople);
-        }
-
-    }
+//    private void passOnlinePeople(){
+//        String totalPeople = "";
+//        for (String str : userlist.values()) {
+//            totalPeople = totalPeople + str + ". ";
+//        }
+//        for (Socket s : userlist.keySet()) {
+//            PrintWriter wordout = this.outToSocket(s);
+//            if (wordout == null) continue;
+//            wordout.println("/onlineList/" + totalPeople);
+//        }
+//
+//    }
 
     private void privateBroadcast(String msg, String[] manyusernames) {
         for (Socket s : userlist.keySet()) {
@@ -97,7 +95,7 @@ public class Chatroom  implements Runnable {
 
         try {
             this.broadcast(this.username + " logged.\n/FlagFlag");
-            passOnlinePeople();
+//            passOnlinePeople();
             while ((flag = this.in.readLine()) != null) {
                 word += flag + "\n";
                 if (!flag.equals("/FlagFlag")) continue;
@@ -134,12 +132,12 @@ public class Chatroom  implements Runnable {
             this.socket.close();
             this.userlist.remove(this.socket);
             this.broadcast(clientName + " left.\n/FlagFlag");
-            passOnlinePeople();
+//            passOnlinePeople();
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
         } catch (Exception e) {
             userlist.remove(socket);
             this.broadcast(clientName + " left.\n/FlagFlag");
-            passOnlinePeople();
+//            passOnlinePeople();
             System.out.println("Client " + clientName + " left. Remaining: " + this.userlist.size());
             e.printStackTrace();
         }

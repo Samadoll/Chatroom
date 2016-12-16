@@ -59,6 +59,11 @@ public class Client3 extends Observable {
 
         if (back.equals("true")) {
             loginUI2.setVisible(false);
+            // new Way to passOnlineUsers
+            String namewithdot = tempIn.readLine();
+            String [] onlineuser = namewithdot.split(". ");
+            userList = Arrays.asList(onlineuser);
+            //
             setChanged();
             notifyObservers("/Show");
             startChat();
