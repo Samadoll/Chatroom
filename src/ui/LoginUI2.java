@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -73,6 +75,21 @@ public class LoginUI2 extends JFrame implements ActionListener {
         gbc.insets = new Insets(3, 2, 0, 3);
 
         userText = new JTextField();
+        userText.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    try {
+                        tryLogin();
+                    } catch (IOException e1) {
+                        JOptionPane.showMessageDialog(testUI,e1);
+                    }
+                }
+            }
+
+        });
+
         panel.add(userText, gbc);
 
         gbc.gridx = 1;
@@ -80,6 +97,20 @@ public class LoginUI2 extends JFrame implements ActionListener {
         gbc.insets = new Insets(3, 2, 0, 3);
 
         passwordField = new JPasswordField();
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    try {
+                        tryLogin();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+
+        });
         panel.add(passwordField, gbc);
 
         gbc.gridwidth = 1;
