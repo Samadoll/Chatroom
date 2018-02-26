@@ -1,5 +1,7 @@
 package model;
 
+import org.java_websocket.WebSocket;
+
 /**
  * A basic model for ChatRoom member
  * <p>
@@ -10,6 +12,7 @@ public class Member {
   private boolean isAdmin;
   private String name;
   private String HashedPassWord;
+  private WebSocket currentClient; // a reference for recording current websocekt client
 
   public Member(String name) {
     this.name = name;
@@ -23,6 +26,10 @@ public class Member {
 
   public boolean isAdmin() {
     return isAdmin;
+  }
+
+  public void setWebSocket(WebSocket ws) {
+    this.currentClient = ws;
   }
 
   private void setAdmin(boolean status) {
