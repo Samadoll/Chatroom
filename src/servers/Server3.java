@@ -26,25 +26,18 @@ public class Server3 implements Runnable {
 
   @Override
   public void run() {
-    try {
-      while (true) {
-        Socket request = serverSocket.accept();
-        InputStream in = new BufferedInputStream(request.getInputStream());
-        StringBuffer content = new StringBuffer();
-        while (true) {
-          int c = in.read();
-          if (c == '\r' || c == '\n' || c == -1) {
-            break;
-          }
-          content.append((char) c);
-        }
-        System.out.println(content.toString());
-        new Thread(new Router(content.toString()));
 
+    while (true) {
+      try {
+        Socket request = serverSocket.accept();
+        System.out.println("Socket accepted!");
+        Router.getInstance().route(request);
+
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-    } catch (IOException e) {
-      e.printStackTrace();
     }
+
   }
 
   public static void main(String[] args) {
