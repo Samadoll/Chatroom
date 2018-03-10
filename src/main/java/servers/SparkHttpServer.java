@@ -7,12 +7,12 @@ public class SparkHttpServer implements Runnable{
 
   public void setup() {
    port(3000);
-   staticFiles.location("/public");
+   staticFiles.externalLocation(System.getProperty("user.dir") + "/public");
    path("/chatroom", ()->{
      before("/*", (q ,a) -> {System.out.println("receive call");});
      get("/index", (req , res) -> {
         new ChatRoomController(req, res).index();
-        return null;
+        return res.body();
      });
    });
 
@@ -20,7 +20,7 @@ public class SparkHttpServer implements Runnable{
 
   @Override
   public void run() {
-    init();
     setup();
+    init();
   }
 }

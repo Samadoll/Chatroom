@@ -13,6 +13,6 @@ public class ChatRoomController extends Controller {
   }
 
   public void index() {
-    render("html","../views/hello.html");
+    render("html","/src/main/java/views/hello.html");
   }
 }

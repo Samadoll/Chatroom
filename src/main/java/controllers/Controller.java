@@ -19,7 +19,8 @@ public abstract class Controller {
 
   private void sendFile(String path) {
     try {
-      File htmlFile = new File(path);
+      String root = System.getProperty("user.dir");
+      File htmlFile = new File(root+ path);
       response.type("text/html");
       response.status(200);
       String htmlString = Files.asCharSource(htmlFile, Charset.forName("UTF-8")).read();
