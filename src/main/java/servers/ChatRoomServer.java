@@ -113,9 +113,16 @@ public class ChatRoomServer extends WebSocketServer {
   }
 
   @Override
+  public void run() {
+    System.out.println("start a new thread running");
+    super.run();
+  }
+
+  @Override
   public void onStart() {
     tokens = new ConcurrentHashMap<UUID, Member>();
     numberOnline = tokens.keySet().size();
     system = new Member("System");
+    System.out.println("chatroom server setup finish!");
   }
 }

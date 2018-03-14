@@ -1,0 +1,103 @@
+
+#header {
+  top: 0;
+  float: right;
+  margin-right: 20px;
+  margin-top: 20px;
+  color: grey;
+}
+
+#footer {
+  height: 50px;
+}
+
+#login-view {
+  height: 100%;
+}
+
+#login-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+#left-block {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg,  #6f27b0 0%, #e91e1e 70%, #ffc700 100%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  animation: bgposition 7s infinite linear alternate;
+}
+
+.header-link {
+  margin-left:5px;
+  margin-right: 5px;
+}
+
+.header-link:hover {
+  cursor: pointer;
+}
+
+#login-form {
+  height: 100%;
+  width: 50%;
+  background-color: #f8f9fa;
+}
+
+.center-form {
+  margin: 40px 120px 40px 100px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center-title {
+  color: white;
+  padding-left: 120px;
+  padding-right: 80px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#chatroom-title {
+  font-weight:700;
+}
+
+#intro {
+  font-weight: 400;
+  border-bottom-style: solid;
+  border-width: 8px;
+  border-color: orange;
+}
+
+@media only screen and (max-width: 400px) {
+  
+}
+
+.login-remind {
+  float: right;
+  font-size: 15px;
+}
+
+#login-button {
+  margin-top: 20px;
+  display: block;
+  width: 60px;
+  height: 40px; 
+  padding: 5px 10px 5px 10px;
+}
+
+html, body {
+  height: 100%;
+}
+
+@keyframes bgposition {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

@@ -15,9 +15,9 @@ public class Server3 {
 
   public Server3() {
       httpServer = new SparkHttpServer();
-      chatRoomServer = new ChatRoomServer(883);
+      chatRoomServer = new ChatRoomServer(8883);
       new Thread(httpServer).start();
-      new Thread(chatRoomServer).start();
+      chatRoomServer.start();
       System.out.println("finish setup server");
 
   }
