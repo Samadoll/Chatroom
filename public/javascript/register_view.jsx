@@ -6,13 +6,16 @@ export class RegisterView extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      account: this.props.account,
+      password: this.props.password
+    };
     this.register = this.register.bind(this);
-   
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    this.accountInput.value = this.props.account;
-    this.passwordInput.value = this.props.password;
+  handleChange(e) {
+    this.setState({[e.target.name] : e.target.value});
   }
 
   register(e) {
@@ -23,7 +26,7 @@ export class RegisterView extends React.Component {
 
   render() {
     return (
-      <div id="register-container">
+      <div id="container">
 
         <div id="left-block">
           <div class="center-title">
@@ -33,7 +36,7 @@ export class RegisterView extends React.Component {
         </div>
 
         <div id="register-form">
-          <div id="header">
+          <div id="options">
             <span class="header-link">Mobile download</span>
             <span>|</span>
             <span class="header-link">About</span>
@@ -43,13 +46,13 @@ export class RegisterView extends React.Component {
               <h3 style={{"font-weight": "500"}}>Join today for more surprise !</h3>
             </div>
             <div class="form-group">
-              <input type="account" class="form-control" id="login_account" ref={el => this.accountInput = el} aria-describedby="account" placeholder="Email/Username" />
+              <input name="account" class="form-control" id="login_account" value={this.state.account} onChange={this.handleChange} placeholder="Email/Username" />
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" id="password" ref={el => this.passwordInput = el} placeholder="Password" />
+              <input type="password" name="password" class="form-control" id="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
             </div>
             <button type="submit" class="btn bg-info text-white" id="register-button" onClick={this.register}>Register</button>
-            <span class="login-remind">Already a user? <a href="#" onClick={this.props.switch} > Log in</a></span>
+            <span class="remind">Already a user? <a href="#" onClick={this.props.switch} > Log in</a></span>
           </form>
         </div>
       </div>
