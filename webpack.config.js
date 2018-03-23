@@ -15,14 +15,12 @@ const config = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: [/node_modules/],
-        query: {
-          presets: ['es2015', 'react', 'es2017']
-        }
+        exclude: [/node_modules/]
       },
       {
         test: /\.jsx$/,
         loader: 'babel-loader',
+        exclude: [/node_modules/],
         query: {
           presets: ['es2015', 'react', 'es2017']
         }
@@ -36,7 +34,8 @@ const config = {
   resolve: {
     alias: {
       'react':  path.join(__dirname,'./node_modules/react/umd/react.development.js'),
-      'LogInView': path.join(__dirname, './public/javascript/login_view.jsx')
+      'LogInView': path.join(__dirname, './public/javascript/login_view.jsx'),
+      'RegisterView': path.join(__dirname, './public/javascript/register_view.jsx')
     },
     extensions: ['.js', '.jsx', '.es8', '.css']
   },
@@ -52,7 +51,6 @@ const config = {
 
 }
 
-
-config.output.publicPath = '//localhost:8080/public/assets';
+config.devtool = "cheap-eval-source-map";
 
 module.exports = config

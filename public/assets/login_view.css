@@ -15,7 +15,7 @@
   height: 100%;
 }
 
-#login-container {
+#register-container {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -39,14 +39,15 @@
   cursor: pointer;
 }
 
-#login-form {
+#register-form {
   height: 100%;
   width: 50%;
   background-color: #f8f9fa;
 }
 
 .center-form {
-  margin: 40px 120px 40px 100px;
+  margin: 40px auto 40px auto;
+  width: 60%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -54,8 +55,9 @@
 
 .center-title {
   color: white;
-  padding-left: 120px;
-  padding-right: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
