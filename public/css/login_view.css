@@ -71,6 +71,15 @@
   width: 80%;
 }
 
+.login-fail {
+  padding-top: 20px;
+}
+
+.login-input-warning {
+  color: red;
+  font-size: 12px; 
+}
+
 #login-block {
   height: 100%;
   width: 50%;
