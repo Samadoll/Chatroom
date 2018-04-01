@@ -16,7 +16,14 @@ public class SparkHttpServer implements Runnable {
         return res.body();
       });
 
-      get("/login_authenticate", (req, res) -> {
+      get("/app", (req, res) -> {
+        new ChatRoomController(req, res).initChatRoom();
+       return res.body();
+      });
+    });
+
+    path("/account", ()->{
+      get("/login", (req, res) -> {
         new AccountController(req, res).login();
         return res.body();
       });
@@ -24,11 +31,6 @@ public class SparkHttpServer implements Runnable {
       post("/register", (req, res) -> {
         new AccountController(req, res).register();
         return res.body();
-      });
-
-      get("/app", (req, res) -> {
-        new ChatRoomController(req, res).initChatRoom();
-       return res.body();
       });
     });
 

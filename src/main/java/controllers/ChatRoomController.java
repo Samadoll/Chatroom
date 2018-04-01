@@ -16,6 +16,8 @@ public class ChatRoomController extends Controller {
     render("html","/src/main/java/views/login_view.html");
   }
 
+  public void register() {}
+
   public void initChatRoom() {
 
   }

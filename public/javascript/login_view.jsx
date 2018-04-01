@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {RegisterView} from 'RegisterView'
+import * as Utils from 'utils';
+import axios from 'axios';
 
 export class LogInView extends React.Component {
 
@@ -8,18 +9,26 @@ export class LogInView extends React.Component {
     super(props);
     
     this.state = {
-      viewMode:this.props.viewMode || "login",
-      account: "",
-      password: "",
+      account: this.props.account || "",
+      password: this.props.password || "",
       accountEmpty: "none",
       passwordEmpty: "none",
       status: "unauthorized"
     }
-
-    this.login = this.login.bind(this);
-    this.switchLoginAndRegister = this.switchLoginAndRegister.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.switchRegister = this.switchRegister.bind(this);
+    this.events = {
+      "input#login-account change": this.handleChange,
+      "input#login-password change": this.handleChange,
+      "button#login-button click": this.login.bind(this),
+      "a#switch-register click": this.switchRegister
+    };
+    Utils.tools.registerEventHandlers(this.events, this);
+  }
 
+  componentDidMount() {
+    document.getElementById("login-account").value = this.state.account;
+    document.getElementById("login-password").value = this.state.password;
   }
 
   login(ev) {
@@ -32,7 +41,24 @@ export class LogInView extends React.Component {
         account: this.state.account,
         password: this.state.password
       };
-      this.setState({"status": "failed"});
+
+      axios({
+        method: "get",
+        url: "/account/login",
+        data: loginParams,
+        responseType: "json"
+      })
+      .then((response) => {
+        if (response["status"] === "success") {
+          this.setState({"status": "success"});
+          // TODO
+        } else {
+          this.setState({"status": "failed"});
+        }
+      })
+      .catch((error) => {
+        this.setState({"status": "error:" + error.response.status});
+      });  
   	}
   }
 
@@ -41,12 +67,23 @@ export class LogInView extends React.Component {
     this.setState({[e.target.name + "Empty"] : "none"});
   }
 
-  switchLoginAndRegister() {
-    this.setState({viewMode: this.state.viewMode === "login" ? "register" : "login"}); 
+  switchRegister() {
+    window.chatRoom.renderComponent(
+      "RegisterView", 
+      document.getElementById("view-container"), 
+      {"account": this.state.account, "password": this.state.password}
+    );
   }
 
-  renderLogin() {
-    var loginFail = this.state.status==="failed" ? "block" : "none"
+  render() {
+    let loginFail = this.state.status==="failed" ? "block" : "none";
+    let warningMessage = "";
+    if (this.state.status === "failed"){
+      warningMessage = "Either the Username or Password is incorrect!";
+    } else if (this.state.status.match(/error/)) {
+      warningMessage = "An Error occur, please try again! Error Code: " + this.state.status.split(":")[1];
+    }
+
     return (
       <div id="login-background">
         <div id="container">
@@ -57,18 +94,18 @@ export class LogInView extends React.Component {
                   <h3 style={{"font-weight": "500"}}>See what's happening in the ChatRoom!</h3>
                 </div>
                 <div class="form-group">
-                  <input name="account" class="form-control" id="login_account" value={this.state.account} onChange={this.handleChange} placeholder="Email/Username" />
-                  <p class="login-input-warning" style={{"display": this.state.accountEmpty}}>Username cannot be blank!</p>
+                  <input name="account" class="form-control" id="login-account" defaultvalue="" placeholder="Email/Username" />
+                  <p class="input-warning" style={{"display": this.state.accountEmpty}}>Username cannot be blank!</p>
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" class="form-control" id="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-                  <p class="login-input-warning" style={{"display": this.state.passwordEmpty}}>Username cannot be blank</p>
+                  <input type="password" name="password" class="form-control" id="login-password" defaultvalue="" placeholder="Password" />
+                  <p class="input-warning" style={{"display": this.state.passwordEmpty}}>Password cannot be blank!</p>
                 </div>
-                <button type="submit" class="btn bg-info text-white" id="register-button" onClick={this.login}>Login</button>
-                <span class="remind">Not a user yet? <a href="#" onClick={this.switchLoginAndRegister} > Register</a></span>
+                <button type="submit" class="btn bg-info text-white" id="login-button">Login</button>
+                <span class="remind">Not a user yet? <a href="#" id="switch-register"> Register</a></span>
                 <div class="login-fail" style={{"display": loginFail }}>
                   <p class= "login-input-warning">
-                    Either the Username or Password is incorrect!
+                    {warningMessage}
                   </p>
                 </div>
               </form>
@@ -83,14 +120,5 @@ export class LogInView extends React.Component {
           </div>
         </div>
       </div>);
-  }
-
-  render() {
-    const newProps = {
-      switch : this.switchLoginAndRegister,
-      account: this.state.account,
-      password: this.state.password
-    }
-    return (this.state.viewMode === "login" ? this.renderLogin() : <RegisterView {...newProps} />);
   }
 }

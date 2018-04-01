@@ -30,10 +30,13 @@
     "webpack": "^4.0.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "css-loader": "^0.28.10",
+    "lodash": "^4.17.5",
     "redux": "^3.7.2",
     "style-loader": "^0.20.3",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.1",
     "websocket": "^1.0.25"

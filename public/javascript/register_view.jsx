@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import * as Utils from 'utils';
+import axios from 'axios';
+
 
 export class RegisterView extends React.Component {
 
@@ -7,21 +10,69 @@ export class RegisterView extends React.Component {
     super(props);
 
     this.state = {
-      account: this.props.account,
-      password: this.props.password
+      account: this.props.account || "",
+      password: this.props.password || "",
+      accountEmpty: "none",
+      passwordEmpty: "none"
     };
-    this.register = this.register.bind(this);
+
     this.handleChange = this.handleChange.bind(this);
+    this.events = {
+      "input#register-account change": this.handleChange,
+      "input#register-password change": this.handleChange,
+      "button#register-button click": this.register.bind(this),
+      "#switch-login click": this.switchLogin.bind(this)
+    };
+    Utils.tools.registerEventHandlers(this.events, this);
+  }
+
+  componentDidMount() {
+    document.getElementById("register-account").value = this.state.account;
+    document.getElementById("register-password").value = this.state.password;
   }
 
   handleChange(e) {
     this.setState({[e.target.name] : e.target.value});
+    this.setState({[e.target.name + "Empty"] : "none"});
+  }
+
+  switchLogin() {
+    window.chatRoom.renderComponent(
+      "LogInView", 
+      document.getElementById("view-container"), 
+      {"account": this.state.account, "password": this.state.password}
+    );
   }
 
   register(e) {
     e.preventDefault();
-    alert(this.state.account + " : " + this.state.password);
-    console.log("trigger");
+    if (this.state.account === "" || this.state.password === "") {  
+        this.setState({"accountEmpty": this.state.account === "" ? "block" : "none"});
+        this.setState({"passwordEmpty": this.state.password === "" ? "block" : "none"});
+    } else {
+      var loginParams = {
+        account: this.state.account,
+        password: this.state.password
+      };
+
+      axios({
+        method: "get",
+        url: "/account/login",
+        data: loginParams,
+        responseType: "json"
+      })
+      .then((response) => {
+        if (response["status"] === "success") {
+          this.setState({"status": "success"});
+          // TODO
+        } else {
+          this.setState({"status": "failed"});
+        }
+      })
+      .catch((error) => {
+
+      }); 
+    }
   }
 
   render() {
@@ -46,13 +97,15 @@ export class RegisterView extends React.Component {
               <h3 style={{"font-weight": "500"}}>Join today for more surprise !</h3>
             </div>
             <div class="form-group">
-              <input name="account" class="form-control" id="login_account" value={this.state.account} onChange={this.handleChange} placeholder="Email/Username" />
+              <input name="account" class="form-control" id="register-account" placeholder="Email/Username" />
+              <p class="input-warning" style={{"display": this.state.accountEmpty}}>Username cannot be blank!</p>
             </div>
             <div class="form-group">
-              <input type="password" name="password" class="form-control" id="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+              <input type="password" name="password" class="form-control" id="register-password" placeholder="Password" />
+              <p class="input-warning" style={{"display": this.state.accountEmpty}}>Username cannot be blank!</p>
             </div>
-            <button type="submit" class="btn bg-info text-white" id="register-button" onClick={this.register}>Register</button>
-            <span class="remind">Already a user? <a href="#" onClick={this.props.switch} > Log in</a></span>
+            <button type="submit" class="btn bg-info text-white" id="register-button">Register</button>
+            <span class="remind">Already a user? <a href="#" id="switch-login" > Log in</a></span>
           </form>
         </div>
       </div>

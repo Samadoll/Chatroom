@@ -4,7 +4,7 @@ var webpack = require('webpack');
 const config = {
   context: path.resolve(__dirname, "./"),
   entry: {
-    chatroom_app: path.join(__dirname,'./public/javascript/chatroom_app.jsx'),
+    chatroom_app: path.join(__dirname,'./public/javascript/chatroom_app.js'),
   },
   output: {
     path: path.resolve(__dirname, 'public/assets'),
@@ -35,7 +35,8 @@ const config = {
     alias: {
       'react':  path.join(__dirname,'./node_modules/react/umd/react.development.js'),
       'LogInView': path.join(__dirname, './public/javascript/login_view.jsx'),
-      'RegisterView': path.join(__dirname, './public/javascript/register_view.jsx')
+      'RegisterView': path.join(__dirname, './public/javascript/register_view.jsx'),
+      'utils': path.join(__dirname, './public/javascript/utils.jsx')
     },
     extensions: ['.js', '.jsx', '.es8', '.css']
   },

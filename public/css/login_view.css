@@ -19,7 +19,7 @@
   height: 50px;
 }
 
-#login-view {
+#view-container {
   height: 100%;
 }
 
@@ -75,7 +75,7 @@
   padding-top: 20px;
 }
 
-.login-input-warning {
+.input-warning {
   color: red;
   font-size: 12px; 
 }
@@ -123,8 +123,6 @@
 }
 
 #login-button {
-  margin-top: 20px;
-  display: block;
   width: 60px;
   height: 40px; 
   padding: 5px 10px 5px 10px;
