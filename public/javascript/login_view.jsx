@@ -8,22 +8,37 @@ export class LogInView extends React.Component {
     super(props);
     
     this.state = {
-      viewMode:"login",
+      viewMode:this.props.viewMode || "login",
       account: "",
-      password: ""
+      password: "",
+      accountEmpty: "none",
+      passwordEmpty: "none",
+      status: "unauthorized"
     }
 
     this.login = this.login.bind(this);
     this.switchLoginAndRegister = this.switchLoginAndRegister.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
   }
 
-  login() {
-
+  login(ev) {
+  	ev.preventDefault();
+    if (this.state.account === "" || this.state.password === "") {	
+        this.setState({"accountEmpty": this.state.account === "" ? "block" : "none"});
+        this.setState({"passwordEmpty": this.state.password === "" ? "block" : "none"});
+  	} else {
+      var loginParams = {
+        account: this.state.account,
+        password: this.state.password
+      };
+      this.setState({"status": "failed"});
+  	}
   }
 
   handleChange(e) {
     this.setState({[e.target.name] : e.target.value});
+    this.setState({[e.target.name + "Empty"] : "none"});
   }
 
   switchLoginAndRegister() {
@@ -31,6 +46,7 @@ export class LogInView extends React.Component {
   }
 
   renderLogin() {
+    var loginFail = this.state.status==="failed" ? "block" : "none"
     return (
       <div id="login-background">
         <div id="container">
@@ -42,12 +58,19 @@ export class LogInView extends React.Component {
                 </div>
                 <div class="form-group">
                   <input name="account" class="form-control" id="login_account" value={this.state.account} onChange={this.handleChange} placeholder="Email/Username" />
+                  <p class="login-input-warning" style={{"display": this.state.accountEmpty}}>Username cannot be blank!</p>
                 </div>
                 <div class="form-group">
                   <input type="password" name="password" class="form-control" id="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                  <p class="login-input-warning" style={{"display": this.state.passwordEmpty}}>Username cannot be blank</p>
                 </div>
                 <button type="submit" class="btn bg-info text-white" id="register-button" onClick={this.login}>Login</button>
                 <span class="remind">Not a user yet? <a href="#" onClick={this.switchLoginAndRegister} > Register</a></span>
+                <div class="login-fail" style={{"display": loginFail }}>
+                  <p class= "login-input-warning">
+                    Either the Username or Password is incorrect!
+                  </p>
+                </div>
               </form>
             </div>
           </div>
@@ -69,5 +92,5 @@ export class LogInView extends React.Component {
       password: this.state.password
     }
     return (this.state.viewMode === "login" ? this.renderLogin() : <RegisterView {...newProps} />);
-	}
+  }
 }

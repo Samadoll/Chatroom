@@ -90,9 +90,9 @@ public class ChatRoomServer extends WebSocketServer {
   }
 
   @Override
-  public void onMessage(WebSocket ws, String s) {
+  public void onMessage(WebSocket ws, String message) {
     try {
-      JSONObject rawMessage = new JSONObject(s);
+      JSONObject rawMessage = new JSONObject(message);
       String type = rawMessage.getString("type");
       switch (type) {
         case LOG_OUT:
@@ -114,7 +114,7 @@ public class ChatRoomServer extends WebSocketServer {
 
   @Override
   public void run() {
-    System.out.println("start a new thread running");
+    System.out.println("websocket server is now running on a new thread");
     super.run();
   }
 

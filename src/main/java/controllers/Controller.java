@@ -1,6 +1,7 @@
 package controllers;
 
 import com.google.common.io.Files;
+import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
@@ -30,12 +31,16 @@ public abstract class Controller {
     }
   }
 
-  public void render(String format, String target) {
+  public void render(String format, Object target) {
     switch (format) {
       case "html":
-        sendFile(target);
+        sendFile((String) target);
         break;
       case "json":
+        JSONObject json = (JSONObject) target;
+        response.type("json");
+        response.status(200);
+        response.body(target.toString());
         break;
     }
   }
