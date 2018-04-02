@@ -1,12 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import {LogInView} from 'LogInView';
-import {RegisterView} from 'RegisterView';
-
-const viewTable = {
-  "LogInView":LogInView,
-  "RegisterView":RegisterView
-}
 
 window.chatRoom = {
 
