@@ -5,6 +5,7 @@ const config = {
   context: path.resolve(__dirname, "./"),
   entry: {
     chatroom_app: path.join(__dirname,'./public/javascript/chatroom_app.js'),
+    chatroom_view: path.join(__dirname,'./public/javascript/__init_chatroom__.js'),
     index_view: path.join(__dirname,'./public/javascript/index_view.js'),
   },
   output: {
@@ -38,7 +39,8 @@ const config = {
       'LogInView': path.join(__dirname, './public/javascript/LogInView.jsx'),
       'RegisterView': path.join(__dirname, './public/javascript/RegisterView.jsx'),
       'utils': path.join(__dirname, './public/javascript/Utils.jsx'),
-      'ChatRoomPanelBase': path.join(__dirname, './public/javascript/ChatRoomPanelBase.jsx')
+      'ChatRoomPanelBase': path.join(__dirname, './public/javascript/ChatRoomPanelBase.jsx'),
+      'init_chatroom': path.join(__dirname, './public/javascript/__init_chatroom__.js')
     },
     extensions: ['.js', '.jsx', '.es8', '.css']
   },

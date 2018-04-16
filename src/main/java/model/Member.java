@@ -2,6 +2,9 @@ package model;
 
 import org.java_websocket.WebSocket;
 
+import java.util.Map;
+import java.util.UUID;
+
 /**
  * A basic model for ChatRoom member
  * <p>
@@ -10,14 +13,14 @@ import org.java_websocket.WebSocket;
 public class Member {
 
   private boolean isAdmin;
+  private UUID id;
   private String name;
-  private String HashedPassWord;
-  private WebSocket currentClient; // a reference for recording current websocekt client
+  private String hashedPassWord;
 
   public Member(String name) {
     this.name = name;
     this.isAdmin = false;
-    this.HashedPassWord = "123";
+    this.hashedPassWord = "123";
   }
 
   public String getName() {
@@ -28,12 +31,12 @@ public class Member {
     return isAdmin;
   }
 
-  public void setWebSocket(WebSocket ws) {
-    this.currentClient = ws;
-  }
-
   private void setAdmin(boolean status) {
     this.isAdmin = status;
+  }
+
+  public boolean comparePassword(String password) {
+    return this.hashedPassWord.equals(password);
   }
 
   public boolean setMemberAsAdmin(Member m) {
@@ -52,5 +55,11 @@ public class Member {
 
   public static Member getMember(String name) {
     return null;
+  }
+
+  public static boolean verifiedMemberLogin(String name, String password) {
+    Member member = Member.getMember(name);
+    if (member == null) return false;
+    return member.comparePassword(password);
   }
 }

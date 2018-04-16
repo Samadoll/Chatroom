@@ -42,16 +42,11 @@ export class LogInView extends React.Component {
         password: this.state.password
       };
 
-      axios({
-        method: "get",
-        url: "/account/login",
-        data: loginParams,
-        responseType: "json"
-      })
-      .then((response) => {
-        if (response["status"] === "success") {
+      axios.post("/account/login", loginParams).then(
+        (response) => {
+        if (response.data["status"] === "success") {
           this.setState({"status": "success"});
-          // TODO
+          window.location = "/chatroom/app";
         } else {
           this.setState({"status": "failed"});
         }
@@ -104,7 +99,7 @@ export class LogInView extends React.Component {
                 <button type="submit" class="btn bg-info text-white" id="login-button">Login</button>
                 <span class="remind">Not a user yet? <a href="#" id="switch-register"> Register</a></span>
                 <div class="login-fail" style={{"display": loginFail }}>
-                  <p class= "login-input-warning">
+                  <p class= "input-warning">
                     {warningMessage}
                   </p>
                 </div>
