@@ -1,0 +1,12 @@
+{
+  "/chatroom": [
+    {"/app": {method: "get", controller: "ChatRoom", action: "initChatRoom"}},
+    {"/index": {method: "get", controller: "ChatRoom", action: "index"}},
+    {"/register": {method: "get", controller: "ChatRoom", action: "register"}}
+  ],
+
+  "/account": [
+    {"/login": {method: "post", controller: "Account", action: "login"}},
+    {"/register": {method: "post", controller: "Account", action: "register"}}
+  ]
+}
