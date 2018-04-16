@@ -1,9 +1,13 @@
 package servers;
 
+import chathandlers.TextMessageHandler;
 import model.Member;
-import model.Message;
 import org.java_websocket.WebSocket;
+import org.java_websocket.drafts.Draft;
+import org.java_websocket.exceptions.InvalidDataException;
+import org.java_websocket.framing.CloseFrame;
 import org.java_websocket.handshake.ClientHandshake;
+import org.java_websocket.handshake.ServerHandshakeBuilder;
 import org.java_websocket.server.WebSocketServer;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,10 +28,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ChatRoomServer extends WebSocketServer {
 
-  public static final String LOG_OUT = "LOG_OUT";
-  public static final String MESSAGE = "MESSAGE";
+  public static final int SETUP = 1;
+  public static final int MESSAGE = 2;
+  private static final String TEXT = "text";
   private Member system;
-  private Map<UUID, Member> tokens;
+  private volatile Map<Session, WebSocket> sessionMap;
   private Integer numberOnline;
 
   public ChatRoomServer(int port) {
@@ -38,8 +43,12 @@ public class ChatRoomServer extends WebSocketServer {
     super(address);
   }
 
-  public void addToken(UUID token, Member member) {
-    tokens.put(token, member);
+  public void addSession(UUID sessionID, Member member) {
+    sessionMap.put(new Session(sessionID, member), null);
+  }
+
+  public void addSessoin(Session s) {
+    sessionMap.put(s, null);
   }
 
   public String initialChatRoomState() {
@@ -47,14 +56,11 @@ public class ChatRoomServer extends WebSocketServer {
     JSONObject initialState = null;
     try {
       initialState = new JSONObject()
+              .put("type", SETUP)
               .put("numberOnline", numberOnline)
               .put("members", members);
 
-      for (Member m : tokens.values()) {
-        JSONObject memberInfo = new JSONObject().put("name", m.getName());
-        if (m.isAdmin()) memberInfo.put("admin", m.isAdmin());
-        members.put(memberInfo);
-      }
+
     } catch (JSONException e) {
       e.printStackTrace();
       return null;
@@ -65,28 +71,34 @@ public class ChatRoomServer extends WebSocketServer {
 
   @Override
   public void onOpen(WebSocket ws, ClientHandshake clientHandshake) {
-    // verification
-    UUID requestToken = UUID.fromString(ws.getResourceDescriptor());
-    if (tokens.keySet().contains(requestToken)) {
-      System.out.println("verification failed, this websocket has not been authorized");
-      removeConnection(ws);
-    } else {
-      Member currentMember = tokens.get(ws.getRemoteSocketAddress().getAddress().getHostAddress());
-      currentMember.setWebSocket(ws);
-      ws.send(initialChatRoomState());
+    String sessionID = ws.getResourceDescriptor().split("/")[1];
+    Session verifiedSession = getSession(sessionID);
+    sessionMap.put(verifiedSession, ws);
+    ws.send(initialChatRoomState());
+  }
+
+  public Session getSession(String sessionId) {
+    for (Session s : sessionMap.keySet()) {
+      if (s.getSessionID().equals(sessionId))
+        return s;
     }
+
+    return null;
+  }
+
+  @Override
+  public ServerHandshakeBuilder onWebsocketHandshakeReceivedAsServer(WebSocket conn, Draft draft, ClientHandshake request) throws InvalidDataException {
+    ServerHandshakeBuilder builder = super.onWebsocketHandshakeReceivedAsServer(conn, draft, request);
+    String token = conn.getResourceDescriptor();
+    if (token.equals("/") || getSession(token.split("/")[1]) == null) {
+      throw new InvalidDataException(CloseFrame.POLICY_VALIDATION, "Verification failed");
+    }
+    return builder;
   }
 
   @Override
   public void onClose(WebSocket ws, int i, String s, boolean b) {
-    try {
-      String token = ws.getRemoteSocketAddress().getAddress().getHostAddress();
-      Member logOutMember = tokens.remove(token);
-      String logOutMessage = new Message(logOutMember.getName() + " has logged out from the chatroom.", system).toJSONSting();
-      broadcast(logOutMessage);
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
+
   }
 
   @Override
@@ -95,10 +107,8 @@ public class ChatRoomServer extends WebSocketServer {
       JSONObject rawMessage = new JSONObject(message);
       String type = rawMessage.getString("type");
       switch (type) {
-        case LOG_OUT:
-          removeConnection(ws);
-          break;
-        case MESSAGE:
+        case TEXT:
+          new TextMessageHandler().process(rawMessage,this);
           break;
       }
     } catch (JSONException e) {
@@ -120,9 +130,28 @@ public class ChatRoomServer extends WebSocketServer {
 
   @Override
   public void onStart() {
-    tokens = new ConcurrentHashMap<UUID, Member>();
-    numberOnline = tokens.keySet().size();
+    sessionMap = new ConcurrentHashMap<Session, WebSocket>();
+    numberOnline = sessionMap.values().size();
     system = new Member("System");
     System.out.println("chatroom server setup finish!");
+  }
+
+  public class Session {
+
+    private final UUID sessionID;
+    private Member member;
+
+    public Session(UUID sessionID, Member m) {
+      this.sessionID = sessionID;
+      this.member = m;
+    }
+
+    public UUID getSessionID() {
+      return this.sessionID;
+    }
+
+    public Member getMember() {
+      return this.member;
+    }
   }
 }
